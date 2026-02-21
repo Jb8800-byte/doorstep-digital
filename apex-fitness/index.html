@@ -1,0 +1,1498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>APEX FITNESS | Transform Your Body, Transform Your Life</title>
+  <meta name="description" content="APEX FITNESS - Premium gym and fitness center. Classes, personal training, and a community that pushes you to be your best.">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    /* ===== RESET & BASE ===== */
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 70px;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #0a0a0a;
+      color: #e0e0e0;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    /* ===== UTILITY ===== */
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .section-heading {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    .section-heading h2 {
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #fff;
+      margin-bottom: 12px;
+    }
+
+    .section-heading .accent-line {
+      width: 60px;
+      height: 4px;
+      background: linear-gradient(90deg, #2979ff, #ff6d00);
+      margin: 0 auto 16px;
+      border-radius: 2px;
+    }
+
+    .section-heading p {
+      font-size: 1.05rem;
+      color: #999;
+      max-width: 550px;
+      margin: 0 auto;
+    }
+
+    section {
+      padding: 80px 0;
+    }
+
+    /* ===== NAVIGATION ===== */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      background: rgba(10, 10, 10, 0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      transition: background 0.3s;
+    }
+
+    .navbar .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 70px;
+    }
+
+    .navbar .logo {
+      font-size: 1.5rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: #fff;
+    }
+
+    .navbar .logo span {
+      color: #2979ff;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+    }
+
+    .nav-links a {
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #bbb;
+      transition: color 0.2s;
+      position: relative;
+    }
+
+    .nav-links a:hover,
+    .nav-links a:focus {
+      color: #2979ff;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: #2979ff;
+      transition: width 0.25s;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      color: #fff;
+      font-size: 1.5rem;
+      cursor: pointer;
+      padding: 4px;
+    }
+
+    /* Mobile Nav */
+    @media (max-width: 768px) {
+      .menu-toggle {
+        display: block;
+      }
+
+      .nav-links {
+        position: fixed;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        background: rgba(10, 10, 10, 0.98);
+        flex-direction: column;
+        align-items: center;
+        gap: 0;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.35s ease;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      }
+
+      .nav-links.open {
+        max-height: 400px;
+      }
+
+      .nav-links a {
+        padding: 16px 0;
+        font-size: 1rem;
+      }
+
+      .nav-links a::after {
+        display: none;
+      }
+    }
+
+    /* ===== HERO ===== */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 120px 20px 80px;
+      background:
+        linear-gradient(
+          135deg,
+          rgba(10, 10, 10, 0.93) 0%,
+          rgba(10, 10, 10, 0.7) 50%,
+          rgba(10, 10, 10, 0.93) 100%
+        ),
+        url('https://placehold.co/1920x1080/1a1a1a/333?text=GYM') center/cover no-repeat;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle at 30% 70%, rgba(41, 121, 255, 0.08) 0%, transparent 50%),
+                  radial-gradient(circle at 70% 30%, rgba(255, 109, 0, 0.06) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 800px;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      padding: 6px 16px;
+      background: rgba(41, 121, 255, 0.12);
+      border: 1px solid rgba(41, 121, 255, 0.3);
+      border-radius: 50px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: #2979ff;
+      margin-bottom: 24px;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.2rem, 6vw, 4rem);
+      font-weight: 900;
+      line-height: 1.1;
+      text-transform: uppercase;
+      color: #fff;
+      margin-bottom: 20px;
+    }
+
+    .hero h1 .highlight {
+      background: linear-gradient(90deg, #2979ff, #ff6d00);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero p {
+      font-size: clamp(1rem, 2vw, 1.2rem);
+      color: #999;
+      margin-bottom: 36px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 32px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #2979ff, #1565c0);
+      color: #fff;
+      box-shadow: 0 4px 20px rgba(41, 121, 255, 0.35);
+    }
+
+    .btn-primary:hover {
+      box-shadow: 0 6px 28px rgba(41, 121, 255, 0.5);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: #fff;
+      border: 2px solid rgba(255, 255, 255, 0.25);
+    }
+
+    .btn-outline:hover {
+      border-color: #fff;
+      box-shadow: 0 4px 16px rgba(255, 255, 255, 0.1);
+    }
+
+    .hero-stats {
+      display: flex;
+      justify-content: center;
+      gap: 48px;
+      margin-top: 60px;
+      flex-wrap: wrap;
+    }
+
+    .hero-stats .stat {
+      text-align: center;
+    }
+
+    .hero-stats .stat-number {
+      font-size: 2rem;
+      font-weight: 900;
+      color: #fff;
+    }
+
+    .hero-stats .stat-number span {
+      color: #ff6d00;
+    }
+
+    .hero-stats .stat-label {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #777;
+      margin-top: 4px;
+    }
+
+    /* ===== CLASSES ===== */
+    .classes {
+      background: #0f0f0f;
+    }
+
+    .classes-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 24px;
+    }
+
+    .class-card {
+      position: relative;
+      background: #161616;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      transition: transform 0.3s, border-color 0.3s;
+    }
+
+    .class-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(41, 121, 255, 0.2);
+    }
+
+    .class-card-img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .class-card-body {
+      padding: 24px;
+    }
+
+    .class-card-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      background: rgba(41, 121, 255, 0.1);
+      border-radius: 10px;
+      margin-bottom: 14px;
+      font-size: 1.2rem;
+      color: #2979ff;
+    }
+
+    .class-card h3 {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 8px;
+    }
+
+    .class-card p {
+      font-size: 0.92rem;
+      color: #888;
+      line-height: 1.6;
+    }
+
+    .class-card-meta {
+      display: flex;
+      gap: 16px;
+      margin-top: 16px;
+      padding-top: 16px;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .class-card-meta span {
+      font-size: 0.8rem;
+      color: #666;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .class-card-meta i {
+      color: #ff6d00;
+      font-size: 0.75rem;
+    }
+
+    /* ===== SCHEDULE ===== */
+    .schedule {
+      background: #0a0a0a;
+    }
+
+    .schedule-wrapper {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .schedule-table {
+      width: 100%;
+      min-width: 700px;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+    }
+
+    .schedule-table thead th {
+      background: #161616;
+      color: #fff;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-size: 0.8rem;
+      padding: 16px 12px;
+      text-align: center;
+      border-bottom: 2px solid rgba(41, 121, 255, 0.3);
+    }
+
+    .schedule-table tbody td {
+      padding: 14px 12px;
+      text-align: center;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+      color: #bbb;
+      vertical-align: top;
+    }
+
+    .schedule-table tbody tr:hover td {
+      background: rgba(41, 121, 255, 0.04);
+    }
+
+    .schedule-table td:first-child {
+      font-weight: 700;
+      color: #ff6d00;
+      text-transform: uppercase;
+      font-size: 0.78rem;
+      letter-spacing: 1px;
+      text-align: left;
+      padding-left: 20px;
+      white-space: nowrap;
+    }
+
+    .schedule-class {
+      font-weight: 600;
+      color: #e0e0e0;
+      font-size: 0.85rem;
+    }
+
+    .schedule-time {
+      font-size: 0.75rem;
+      color: #666;
+      margin-top: 2px;
+    }
+
+    .schedule-empty {
+      color: #333;
+    }
+
+    /* ===== TRAINERS ===== */
+    .trainers {
+      background: #0f0f0f;
+    }
+
+    .trainers-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 30px;
+    }
+
+    .trainer-card {
+      background: #161616;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      text-align: center;
+      transition: transform 0.3s;
+    }
+
+    .trainer-card:hover {
+      transform: translateY(-6px);
+    }
+
+    .trainer-img-wrapper {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .trainer-img {
+      width: 100%;
+      height: 320px;
+      object-fit: cover;
+      filter: grayscale(20%);
+      transition: filter 0.3s;
+    }
+
+    .trainer-card:hover .trainer-img {
+      filter: grayscale(0%);
+    }
+
+    .trainer-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 16px;
+      background: linear-gradient(transparent, rgba(0,0,0,0.8));
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    .trainer-overlay a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      color: #fff;
+      font-size: 0.9rem;
+      transition: background 0.2s;
+    }
+
+    .trainer-overlay a:hover {
+      background: #2979ff;
+    }
+
+    .trainer-info {
+      padding: 24px;
+    }
+
+    .trainer-info h3 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 4px;
+    }
+
+    .trainer-info .specialty {
+      font-size: 0.85rem;
+      color: #2979ff;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 12px;
+    }
+
+    .trainer-info p {
+      font-size: 0.9rem;
+      color: #888;
+      line-height: 1.6;
+    }
+
+    /* ===== LOCATION ===== */
+    .location {
+      background: #0a0a0a;
+    }
+
+    .location-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: start;
+    }
+
+    .location-info {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .location-item {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+
+    .location-item-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 48px;
+      height: 48px;
+      min-width: 48px;
+      background: rgba(41, 121, 255, 0.1);
+      border-radius: 12px;
+      color: #2979ff;
+      font-size: 1.1rem;
+    }
+
+    .location-item h4 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 4px;
+    }
+
+    .location-item p {
+      font-size: 0.9rem;
+      color: #888;
+      line-height: 1.5;
+    }
+
+    .map-wrapper {
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      height: 380px;
+    }
+
+    .map-wrapper iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+      filter: grayscale(80%) invert(92%) contrast(90%);
+    }
+
+    @media (max-width: 768px) {
+      .location-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .map-wrapper {
+        height: 280px;
+      }
+    }
+
+    /* ===== CONTACT ===== */
+    .contact {
+      background: #0f0f0f;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 40px;
+      align-items: start;
+    }
+
+    .contact-text h3 {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 12px;
+    }
+
+    .contact-text p {
+      color: #888;
+      font-size: 0.95rem;
+      margin-bottom: 24px;
+      line-height: 1.7;
+    }
+
+    .contact-method {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .contact-method i {
+      color: #2979ff;
+      font-size: 1rem;
+      width: 20px;
+      text-align: center;
+    }
+
+    .contact-method span {
+      color: #bbb;
+      font-size: 0.95rem;
+    }
+
+    .contact-form {
+      background: #161616;
+      padding: 32px;
+      border-radius: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.82rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #999;
+      margin-bottom: 8px;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 12px 16px;
+      background: #0f0f0f;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 8px;
+      color: #e0e0e0;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.95rem;
+      transition: border-color 0.2s;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: #2979ff;
+    }
+
+    .form-group input::placeholder,
+    .form-group textarea::placeholder {
+      color: #444;
+    }
+
+    .form-group textarea {
+      height: 120px;
+      resize: vertical;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .btn-submit {
+      width: 100%;
+      padding: 14px;
+      justify-content: center;
+    }
+
+    @media (max-width: 768px) {
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* ===== FOOTER ===== */
+    .footer {
+      background: #080808;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      padding: 60px 0 0;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 40px;
+      padding-bottom: 40px;
+    }
+
+    .footer-brand .logo {
+      font-size: 1.4rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: #fff;
+      margin-bottom: 12px;
+    }
+
+    .footer-brand .logo span {
+      color: #2979ff;
+    }
+
+    .footer-brand p {
+      font-size: 0.9rem;
+      color: #666;
+      line-height: 1.7;
+      margin-bottom: 20px;
+    }
+
+    .footer-social {
+      display: flex;
+      gap: 12px;
+    }
+
+    .footer-social a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 10px;
+      color: #888;
+      font-size: 1rem;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .footer-social a:hover {
+      background: #2979ff;
+      color: #fff;
+    }
+
+    .footer-col h4 {
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #fff;
+      margin-bottom: 20px;
+    }
+
+    .footer-col ul li {
+      margin-bottom: 10px;
+    }
+
+    .footer-col ul li a {
+      font-size: 0.9rem;
+      color: #666;
+      transition: color 0.2s;
+    }
+
+    .footer-col ul li a:hover {
+      color: #2979ff;
+    }
+
+    .footer-hours li {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.88rem;
+      color: #666;
+      margin-bottom: 8px;
+    }
+
+    .footer-hours li span:first-child {
+      color: #999;
+      font-weight: 500;
+    }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      padding: 20px 0;
+      text-align: center;
+      font-size: 0.82rem;
+      color: #444;
+    }
+
+    @media (max-width: 768px) {
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 30px;
+      }
+
+      .footer-brand {
+        grid-column: 1 / -1;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+
+      section {
+        padding: 60px 0;
+      }
+
+      .hero-stats {
+        gap: 32px;
+      }
+
+      .classes-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== NAVIGATION ===== -->
+  <nav class="navbar" role="navigation" aria-label="Main navigation">
+    <div class="container">
+      <a href="#hero" class="logo">APEX<span>FIT</span></a>
+      <button class="menu-toggle" aria-label="Toggle menu" aria-expanded="false">
+        <i class="fas fa-bars"></i>
+      </button>
+      <div class="nav-links" role="menubar">
+        <a href="#classes" role="menuitem">Classes</a>
+        <a href="#schedule" role="menuitem">Schedule</a>
+        <a href="#trainers" role="menuitem">Trainers</a>
+        <a href="#location" role="menuitem">Location</a>
+        <a href="#contact" role="menuitem">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero" id="hero">
+    <div class="hero-content">
+      <div class="hero-badge">Now Open — First Month Free</div>
+      <h1>Transform Your Body,<br> Transform Your <span class="highlight">Life</span></h1>
+      <p>Join the community that has helped thousands reach their fitness goals. World-class equipment, expert trainers, and programs designed for every level.</p>
+      <div class="hero-buttons">
+        <a href="#contact" class="btn btn-primary">
+          <i class="fas fa-bolt"></i> Start Free Trial
+        </a>
+        <a href="#classes" class="btn btn-outline">
+          <i class="fas fa-play"></i> View Classes
+        </a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat">
+          <div class="stat-number">5<span>K+</span></div>
+          <div class="stat-label">Active Members</div>
+        </div>
+        <div class="stat">
+          <div class="stat-number">50<span>+</span></div>
+          <div class="stat-label">Weekly Classes</div>
+        </div>
+        <div class="stat">
+          <div class="stat-number">15<span>+</span></div>
+          <div class="stat-label">Expert Trainers</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CLASSES ===== -->
+  <section class="classes" id="classes">
+    <div class="container">
+      <div class="section-heading">
+        <h2>Our Classes</h2>
+        <div class="accent-line"></div>
+        <p>From high-intensity to mindful movement, find the class that fits your goals.</p>
+      </div>
+      <div class="classes-grid">
+
+        <article class="class-card">
+          <img src="https://placehold.co/640x400/1a1a2e/2979ff?text=STRENGTH" alt="Strength Training class" class="class-card-img" loading="lazy">
+          <div class="class-card-body">
+            <div class="class-card-icon"><i class="fas fa-dumbbell"></i></div>
+            <h3>Strength Training</h3>
+            <p>Build muscle and increase power with structured resistance training. Progressive overload programs for all experience levels.</p>
+            <div class="class-card-meta">
+              <span><i class="fas fa-clock"></i> 60 min</span>
+              <span><i class="fas fa-fire"></i> 500-700 cal</span>
+              <span><i class="fas fa-signal"></i> All Levels</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="class-card">
+          <img src="https://placehold.co/640x400/1a1a2e/ff6d00?text=HIIT" alt="HIIT class" class="class-card-img" loading="lazy">
+          <div class="class-card-body">
+            <div class="class-card-icon"><i class="fas fa-heart-pulse"></i></div>
+            <h3>HIIT</h3>
+            <p>High-intensity interval training that torches calories and boosts metabolism. Short bursts of all-out effort with brief recovery.</p>
+            <div class="class-card-meta">
+              <span><i class="fas fa-clock"></i> 45 min</span>
+              <span><i class="fas fa-fire"></i> 600-900 cal</span>
+              <span><i class="fas fa-signal"></i> Intermediate</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="class-card">
+          <img src="https://placehold.co/640x400/1a1a2e/66bb6a?text=YOGA" alt="Yoga class" class="class-card-img" loading="lazy">
+          <div class="class-card-body">
+            <div class="class-card-icon"><i class="fas fa-spa"></i></div>
+            <h3>Yoga</h3>
+            <p>Improve flexibility, balance, and mental clarity. Vinyasa and power yoga flows designed to complement your training.</p>
+            <div class="class-card-meta">
+              <span><i class="fas fa-clock"></i> 60 min</span>
+              <span><i class="fas fa-fire"></i> 200-400 cal</span>
+              <span><i class="fas fa-signal"></i> All Levels</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="class-card">
+          <img src="https://placehold.co/640x400/1a1a2e/ef5350?text=BOXING" alt="Boxing class" class="class-card-img" loading="lazy">
+          <div class="class-card-body">
+            <div class="class-card-icon"><i class="fas fa-hand-fist"></i></div>
+            <h3>Boxing</h3>
+            <p>Learn technique while getting an incredible full-body workout. Heavy bag rounds, pad work, and conditioning drills.</p>
+            <div class="class-card-meta">
+              <span><i class="fas fa-clock"></i> 60 min</span>
+              <span><i class="fas fa-fire"></i> 700-1000 cal</span>
+              <span><i class="fas fa-signal"></i> All Levels</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="class-card">
+          <img src="https://placehold.co/640x400/1a1a2e/ab47bc?text=SPIN" alt="Spin class" class="class-card-img" loading="lazy">
+          <div class="class-card-body">
+            <div class="class-card-icon"><i class="fas fa-bicycle"></i></div>
+            <h3>Spin</h3>
+            <p>Indoor cycling with energizing music and coached intervals. Build endurance and leg strength in a motivating group setting.</p>
+            <div class="class-card-meta">
+              <span><i class="fas fa-clock"></i> 45 min</span>
+              <span><i class="fas fa-fire"></i> 400-600 cal</span>
+              <span><i class="fas fa-signal"></i> All Levels</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="class-card">
+          <img src="https://placehold.co/640x400/1a1a2e/ffa726?text=CROSSFIT" alt="CrossFit class" class="class-card-img" loading="lazy">
+          <div class="class-card-body">
+            <div class="class-card-icon"><i class="fas fa-person-running"></i></div>
+            <h3>CrossFit</h3>
+            <p>Constantly varied functional movements performed at high intensity. Olympic lifts, gymnastics, and metabolic conditioning.</p>
+            <div class="class-card-meta">
+              <span><i class="fas fa-clock"></i> 60 min</span>
+              <span><i class="fas fa-fire"></i> 600-900 cal</span>
+              <span><i class="fas fa-signal"></i> Intermediate</span>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SCHEDULE ===== -->
+  <section class="schedule" id="schedule">
+    <div class="container">
+      <div class="section-heading">
+        <h2>Weekly Schedule</h2>
+        <div class="accent-line"></div>
+        <p>Plan your week with our full class timetable. Drop in anytime.</p>
+      </div>
+      <div class="schedule-wrapper">
+        <table class="schedule-table">
+          <thead>
+            <tr>
+              <th></th>
+              <th>Monday</th>
+              <th>Tuesday</th>
+              <th>Wednesday</th>
+              <th>Thursday</th>
+              <th>Friday</th>
+              <th>Saturday</th>
+              <th>Sunday</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>6:00 AM</td>
+              <td>
+                <div class="schedule-class">HIIT</div>
+                <div class="schedule-time">6:00 – 6:45</div>
+              </td>
+              <td>
+                <div class="schedule-class">Spin</div>
+                <div class="schedule-time">6:00 – 6:45</div>
+              </td>
+              <td>
+                <div class="schedule-class">HIIT</div>
+                <div class="schedule-time">6:00 – 6:45</div>
+              </td>
+              <td>
+                <div class="schedule-class">Spin</div>
+                <div class="schedule-time">6:00 – 6:45</div>
+              </td>
+              <td>
+                <div class="schedule-class">HIIT</div>
+                <div class="schedule-time">6:00 – 6:45</div>
+              </td>
+              <td>
+                <div class="schedule-class">CrossFit</div>
+                <div class="schedule-time">7:00 – 8:00</div>
+              </td>
+              <td>
+                <div class="schedule-class">Yoga</div>
+                <div class="schedule-time">8:00 – 9:00</div>
+              </td>
+            </tr>
+            <tr>
+              <td>8:00 AM</td>
+              <td>
+                <div class="schedule-class">Yoga</div>
+                <div class="schedule-time">8:00 – 9:00</div>
+              </td>
+              <td>
+                <div class="schedule-class">Strength</div>
+                <div class="schedule-time">8:00 – 9:00</div>
+              </td>
+              <td>
+                <div class="schedule-class">Yoga</div>
+                <div class="schedule-time">8:00 – 9:00</div>
+              </td>
+              <td>
+                <div class="schedule-class">Strength</div>
+                <div class="schedule-time">8:00 – 9:00</div>
+              </td>
+              <td>
+                <div class="schedule-class">Yoga</div>
+                <div class="schedule-time">8:00 – 9:00</div>
+              </td>
+              <td>
+                <div class="schedule-class">Boxing</div>
+                <div class="schedule-time">9:00 – 10:00</div>
+              </td>
+              <td>
+                <div class="schedule-class">CrossFit</div>
+                <div class="schedule-time">9:30 – 10:30</div>
+              </td>
+            </tr>
+            <tr>
+              <td>12:00 PM</td>
+              <td>
+                <div class="schedule-class">Strength</div>
+                <div class="schedule-time">12:00 – 1:00</div>
+              </td>
+              <td>
+                <div class="schedule-class">Boxing</div>
+                <div class="schedule-time">12:00 – 1:00</div>
+              </td>
+              <td>
+                <div class="schedule-class">Strength</div>
+                <div class="schedule-time">12:00 – 1:00</div>
+              </td>
+              <td>
+                <div class="schedule-class">Boxing</div>
+                <div class="schedule-time">12:00 – 1:00</div>
+              </td>
+              <td>
+                <div class="schedule-class">Strength</div>
+                <div class="schedule-time">12:00 – 1:00</div>
+              </td>
+              <td class="schedule-empty">—</td>
+              <td class="schedule-empty">—</td>
+            </tr>
+            <tr>
+              <td>5:30 PM</td>
+              <td>
+                <div class="schedule-class">CrossFit</div>
+                <div class="schedule-time">5:30 – 6:30</div>
+              </td>
+              <td>
+                <div class="schedule-class">HIIT</div>
+                <div class="schedule-time">5:30 – 6:15</div>
+              </td>
+              <td>
+                <div class="schedule-class">Boxing</div>
+                <div class="schedule-time">5:30 – 6:30</div>
+              </td>
+              <td>
+                <div class="schedule-class">CrossFit</div>
+                <div class="schedule-time">5:30 – 6:30</div>
+              </td>
+              <td>
+                <div class="schedule-class">Spin</div>
+                <div class="schedule-time">5:30 – 6:15</div>
+              </td>
+              <td class="schedule-empty">—</td>
+              <td class="schedule-empty">—</td>
+            </tr>
+            <tr>
+              <td>7:00 PM</td>
+              <td>
+                <div class="schedule-class">Spin</div>
+                <div class="schedule-time">7:00 – 7:45</div>
+              </td>
+              <td>
+                <div class="schedule-class">Yoga</div>
+                <div class="schedule-time">7:00 – 8:00</div>
+              </td>
+              <td>
+                <div class="schedule-class">Spin</div>
+                <div class="schedule-time">7:00 – 7:45</div>
+              </td>
+              <td>
+                <div class="schedule-class">Yoga</div>
+                <div class="schedule-time">7:00 – 8:00</div>
+              </td>
+              <td>
+                <div class="schedule-class">CrossFit</div>
+                <div class="schedule-time">7:00 – 8:00</div>
+              </td>
+              <td class="schedule-empty">—</td>
+              <td class="schedule-empty">—</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== TRAINERS ===== -->
+  <section class="trainers" id="trainers">
+    <div class="container">
+      <div class="section-heading">
+        <h2>Meet Our Trainers</h2>
+        <div class="accent-line"></div>
+        <p>Certified professionals who are passionate about helping you reach your potential.</p>
+      </div>
+      <div class="trainers-grid">
+
+        <article class="trainer-card">
+          <div class="trainer-img-wrapper">
+            <img src="https://placehold.co/400x400/1a1a2e/2979ff?text=COACH+MARCUS" alt="Marcus Chen, Head Strength Coach" class="trainer-img" loading="lazy">
+            <div class="trainer-overlay">
+              <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+              <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+              <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+          </div>
+          <div class="trainer-info">
+            <h3>Marcus Chen</h3>
+            <div class="specialty">Head Strength Coach</div>
+            <p>CSCS certified with 12+ years of experience in powerlifting and sports performance. Former collegiate athlete turned elite-level coach.</p>
+          </div>
+        </article>
+
+        <article class="trainer-card">
+          <div class="trainer-img-wrapper">
+            <img src="https://placehold.co/400x400/1a1a2e/ff6d00?text=COACH+SARAH" alt="Sarah Rodriguez, HIIT & CrossFit Lead" class="trainer-img" loading="lazy">
+            <div class="trainer-overlay">
+              <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+              <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+              <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+          </div>
+          <div class="trainer-info">
+            <h3>Sarah Rodriguez</h3>
+            <div class="specialty">HIIT & CrossFit Lead</div>
+            <p>CrossFit Level 3 trainer and two-time regional competitor. Specializes in metabolic conditioning and functional fitness programming.</p>
+          </div>
+        </article>
+
+        <article class="trainer-card">
+          <div class="trainer-img-wrapper">
+            <img src="https://placehold.co/400x400/1a1a2e/66bb6a?text=COACH+JAMES" alt="James Okafor, Boxing & Conditioning" class="trainer-img" loading="lazy">
+            <div class="trainer-overlay">
+              <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+              <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+              <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+          </div>
+          <div class="trainer-info">
+            <h3>James Okafor</h3>
+            <div class="specialty">Boxing & Conditioning</div>
+            <p>Former amateur boxing champion with a NASM personal training certification. Blends technical boxing skill with full-body conditioning.</p>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== LOCATION ===== -->
+  <section class="location" id="location">
+    <div class="container">
+      <div class="section-heading">
+        <h2>Find Us</h2>
+        <div class="accent-line"></div>
+        <p>Conveniently located in downtown with easy parking and transit access.</p>
+      </div>
+      <div class="location-grid">
+        <div class="location-info">
+          <div class="location-item">
+            <div class="location-item-icon"><i class="fas fa-location-dot"></i></div>
+            <div>
+              <h4>Address</h4>
+              <p>742 Fitness Avenue, Suite 100<br>Downtown, CA 90210</p>
+            </div>
+          </div>
+          <div class="location-item">
+            <div class="location-item-icon"><i class="fas fa-phone"></i></div>
+            <div>
+              <h4>Phone</h4>
+              <p>(555) 123-4567</p>
+            </div>
+          </div>
+          <div class="location-item">
+            <div class="location-item-icon"><i class="fas fa-envelope"></i></div>
+            <div>
+              <h4>Email</h4>
+              <p>info@apexfitness.com</p>
+            </div>
+          </div>
+          <div class="location-item">
+            <div class="location-item-icon"><i class="fas fa-clock"></i></div>
+            <div>
+              <h4>Hours</h4>
+              <p>Mon–Fri: 5:00 AM – 10:00 PM<br>Sat–Sun: 7:00 AM – 6:00 PM</p>
+            </div>
+          </div>
+          <div class="location-item">
+            <div class="location-item-icon"><i class="fas fa-car"></i></div>
+            <div>
+              <h4>Parking</h4>
+              <p>Free parking available in the building garage. Street parking also available.</p>
+            </div>
+          </div>
+        </div>
+        <div class="map-wrapper">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3305.7152203584424!2d-118.25291658478!3d34.05223458060!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80c2c7b85dea2a93%3A0x1ff47c3ceb7bb5a0!2sLos%20Angeles%2C%20CA!5e0!3m2!1sen!2sus!4v1700000000000"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="APEX Fitness location on Google Maps">
+          </iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CONTACT ===== -->
+  <section class="contact" id="contact">
+    <div class="container">
+      <div class="section-heading">
+        <h2>Get In Touch</h2>
+        <div class="accent-line"></div>
+        <p>Ready to start? Drop us a message and we'll get back to you within 24 hours.</p>
+      </div>
+      <div class="contact-grid">
+        <div class="contact-text">
+          <h3>Start Your Free Trial Today</h3>
+          <p>Whether you're a complete beginner or an experienced athlete, we have a program for you. Fill out the form and a member of our team will reach out to schedule your complimentary first session.</p>
+          <div class="contact-method">
+            <i class="fas fa-phone"></i>
+            <span>(555) 123-4567</span>
+          </div>
+          <div class="contact-method">
+            <i class="fas fa-envelope"></i>
+            <span>info@apexfitness.com</span>
+          </div>
+          <div class="contact-method">
+            <i class="fas fa-location-dot"></i>
+            <span>742 Fitness Avenue, Downtown CA</span>
+          </div>
+        </div>
+        <form class="contact-form" action="#" method="POST" novalidate>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="name">Full Name</label>
+              <input type="text" id="name" name="name" placeholder="John Doe" required minlength="2">
+            </div>
+            <div class="form-group">
+              <label for="phone">Phone</label>
+              <input type="tel" id="phone" name="phone" placeholder="(555) 000-0000" pattern="[\d\s\(\)\-\+]+">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" placeholder="john@example.com" required>
+          </div>
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" placeholder="Tell us about your fitness goals..." required minlength="10"></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary btn-submit">
+            <i class="fas fa-paper-plane"></i> Send Message
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="logo">APEX<span>FIT</span></div>
+          <p>Premium fitness facility dedicated to helping you become the strongest version of yourself. State-of-the-art equipment, expert coaching, and a community that keeps you coming back.</p>
+          <div class="footer-social">
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+            <a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="#classes">Classes</a></li>
+            <li><a href="#schedule">Schedule</a></li>
+            <li><a href="#trainers">Trainers</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Programs</h4>
+          <ul>
+            <li><a href="#">Personal Training</a></li>
+            <li><a href="#">Group Classes</a></li>
+            <li><a href="#">Nutrition Plans</a></li>
+            <li><a href="#">Corporate Wellness</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Hours</h4>
+          <ul class="footer-hours">
+            <li><span>Mon – Fri</span><span>5 AM – 10 PM</span></li>
+            <li><span>Saturday</span><span>7 AM – 6 PM</span></li>
+            <li><span>Sunday</span><span>7 AM – 6 PM</span></li>
+            <li><span>Holidays</span><span>8 AM – 2 PM</span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        &copy; 2026 APEX Fitness. All rights reserved. | <a href="#" style="color:#666;">Privacy Policy</a> | <a href="#" style="color:#666;">Terms of Service</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===== VANILLA JS ===== -->
+  <script>
+    // Mobile menu toggle
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navLinks = document.querySelector('.nav-links');
+    const navItems = navLinks.querySelectorAll('a');
+
+    menuToggle.addEventListener('click', () => {
+      const isOpen = navLinks.classList.toggle('open');
+      menuToggle.setAttribute('aria-expanded', isOpen);
+      menuToggle.querySelector('i').className = isOpen ? 'fas fa-xmark' : 'fas fa-bars';
+    });
+
+    // Close mobile menu when a link is clicked
+    navItems.forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('open');
+        menuToggle.setAttribute('aria-expanded', 'false');
+        menuToggle.querySelector('i').className = 'fas fa-bars';
+      });
+    });
+
+    // Contact form validation
+    const form = document.querySelector('.contact-form');
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      if (form.checkValidity()) {
+        alert('Thank you! We\'ll be in touch within 24 hours.');
+        form.reset();
+      } else {
+        form.reportValidity();
+      }
+    });
+  </script>
+
+</body>
+</html>

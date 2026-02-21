@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Costa — Coastal Dining in Miami</title>
+    <meta name="description" content="La Costa brings refined coastal cuisine to Miami's waterfront. Fresh seafood, Latin-inflected dishes, and an atmosphere shaped by the sea.">
+    <meta property="og:title" content="La Costa — Coastal Dining in Miami">
+    <meta property="og:description" content="Refined coastal cuisine on Miami's waterfront. Reserve your table today.">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="en_US">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Restaurant",
+        "name": "La Costa",
+        "description": "Refined coastal cuisine on Miami's waterfront.",
+        "servesCuisine": ["Seafood", "Latin-Fusion", "Coastal"],
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "123 Ocean Drive",
+            "addressLocality": "Miami Beach",
+            "addressRegion": "FL",
+            "postalCode": "33139"
+        },
+        "telephone": "+1-305-555-1234",
+        "openingHoursSpecification": [
+            { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday"], "opens": "12:00", "closes": "22:00" },
+            { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Friday","Saturday"], "opens": "12:00", "closes": "23:00" },
+            { "@type": "OpeningHoursSpecification", "dayOfWeek": "Sunday", "opens": "11:00", "closes": "21:00" }
+        ],
+        "priceRange": "$$$"
+    }
+    </script>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar" role="navigation" aria-label="Main navigation">
+        <div class="container nav-container">
+            <a href="#" class="logo" aria-label="La Costa — Home">La Costa</a>
+            <ul class="nav-menu" id="navMenu" role="menubar">
+                <li role="none"><a href="#about" role="menuitem">About</a></li>
+                <li role="none"><a href="#kitchen" role="menuitem">Kitchen</a></li>
+                <li role="none"><a href="#menu" role="menuitem">Menu</a></li>
+                <li role="none"><a href="#gallery" role="menuitem">Gallery</a></li>
+                <li role="none"><a href="#contact" role="menuitem">Contact</a></li>
+            </ul>
+            <a href="#reservations" class="btn-reserve">Reserve a Table</a>
+            <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false" aria-controls="navMenu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section id="home" class="hero" aria-label="Welcome">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1>La Costa</h1>
+            <p class="hero-tagline">Coastal cuisine shaped by the sea</p>
+            <div class="hero-actions">
+                <a href="#reservations" class="btn btn-gold">Reserve a Table</a>
+                <a href="#menu" class="btn btn-ghost">View the Menu</a>
+            </div>
+        </div>
+        <div class="scroll-indicator" aria-hidden="true">
+            <div class="scroll-line"></div>
+        </div>
+    </section>
+
+    <!-- About -->
+    <section id="about" class="about" aria-label="About La Costa">
+        <div class="container">
+            <div class="about-grid">
+                <figure class="about-figure reveal">
+                    <div class="img-placeholder img-placeholder--portrait">
+                        <img src="images/about-seafood-still-life.png" alt="Fresh seafood arrangement on crushed ice, lit by warm afternoon light">
+                    </div>
+                    <figcaption>Daily selections from our purveyors</figcaption>
+                </figure>
+                <div class="about-copy reveal">
+                    <span class="section-kicker">Our Story</span>
+                    <h2>Where the Coast Sets the Table</h2>
+                    <p>La Costa began with a simple conviction: the best coastal cooking starts at the dock, not the stove. Every morning, our team meets the boats, selects the catch, and builds the day's menu around what the water gives us.</p>
+                    <blockquote>
+                        <p>We cook the coast as it is &mdash; vivid, generous, unhurried.</p>
+                    </blockquote>
+                    <p>The result is a dining room that feels both elevated and familiar, where Latin-inflected flavors meet pristine seafood in dishes meant to be shared slowly, preferably with a view of the water.</p>
+                    <div class="about-pillars">
+                        <div class="pillar reveal">
+                            <svg class="pillar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                            <h4>Daily Sourced</h4>
+                            <p>Seafood selected each morning from local waters</p>
+                        </div>
+                        <div class="pillar reveal">
+                            <svg class="pillar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zM17.9 17.39A9.953 9.953 0 0020 12c0-4.42-3.58-8-8-8-.74 0-1.45.1-2.14.27L12 6.5l2.72 2.72 1.5-1.5L17.9 9.4l-1.5 1.5L18 12.5l-1.5 1.5-1.68-1.68L12.5 15l-2-2L9 14.5V17c.55 0 1-.45 1-1v-1l3-2.5 2.5 2.5v1.5a8.013 8.013 0 002.4.39z"/></svg>
+                            <h4>Coastal Heritage</h4>
+                            <p>Techniques rooted in Latin and Mediterranean traditions</p>
+                        </div>
+                        <div class="pillar reveal">
+                            <svg class="pillar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"/><path d="M15.5 11c.83 0 1.5-.67 1.5-1.5S16.33 8 15.5 8 14 8.67 14 9.5s.67 1.5 1.5 1.5zM8.5 11c.83 0 1.5-.67 1.5-1.5S9.33 8 8.5 8 7 8.67 7 9.5 7.67 11 8.5 11zM12 17.5c2.33 0 4.31-1.46 5.11-3.5H6.89c.8 2.04 2.78 3.5 5.11 3.5z"/></svg>
+                            <h4>Warm Service</h4>
+                            <p>Hospitality that feels like dining with friends</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- From the Kitchen -->
+    <section id="kitchen" class="kitchen" aria-label="From the Kitchen">
+        <div class="container">
+            <div class="kitchen-grid">
+                <div class="kitchen-copy reveal">
+                    <span class="section-kicker">From the Kitchen</span>
+                    <h2>Chef Alejandra Vega</h2>
+                    <p>Raised between Cartagena and Miami, Chef Vega brings two decades of coastal cooking to La Costa. Her menus balance precision with generosity &mdash; refined technique applied to bold, sun-driven flavors.</p>
+                    <p>Before La Costa, she cooked at waterfront kitchens across the Caribbean and South Florida, always returning to the same principle: let the ingredient lead.</p>
+                    <a href="#menu" class="btn btn-text">Explore the menu</a>
+                </div>
+                <figure class="kitchen-figure reveal">
+                    <div class="img-placeholder img-placeholder--portrait">
+                        <img src="images/kitchen-chef-vega.png" alt="Chef Alejandra Vega plating a dish in the La Costa kitchen">
+                    </div>
+                    <figcaption>Chef Vega in the La Costa kitchen</figcaption>
+                </figure>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu Highlights -->
+    <section id="menu" class="menu-section" aria-label="Menu highlights">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-kicker">The Menu</span>
+                <h2>Signature Dishes</h2>
+                <p>A selection from our current menu. Offerings change with the season and the catch.</p>
+            </div>
+            <div class="menu-grid">
+                <article class="menu-card reveal">
+                    <figure class="menu-card-figure">
+                        <div class="img-placeholder img-placeholder--landscape">
+                            <img src="images/menu-camarones.png" alt="Sizzling garlic shrimp in a cast iron pan with herbs">
+                        </div>
+                    </figure>
+                    <div class="menu-card-body">
+                        <div class="menu-card-header">
+                            <h3>Camarones al Ajillo</h3>
+                            <span class="menu-price">$24</span>
+                        </div>
+                        <p>Gulf shrimp sauteed in garlic, white wine, and guajillo oil. Served with crispy plantains.</p>
+                    </div>
+                </article>
+                <article class="menu-card reveal">
+                    <figure class="menu-card-figure">
+                        <div class="img-placeholder img-placeholder--landscape">
+                            <img src="images/menu-mahi.png" alt="Grilled mahi-mahi with mango salsa on a white plate">
+                        </div>
+                    </figure>
+                    <div class="menu-card-body">
+                        <div class="menu-card-header">
+                            <h3>Mahi-Mahi Tropical</h3>
+                            <span class="menu-price">$28</span>
+                        </div>
+                        <p>Line-caught mahi, grilled over wood. Mango-habanero salsa, coconut rice, seasonal greens.</p>
+                    </div>
+                </article>
+                <article class="menu-card reveal">
+                    <figure class="menu-card-figure">
+                        <div class="img-placeholder img-placeholder--landscape">
+                            <img src="images/menu-ceviche.png" alt="Glass bowl of lobster ceviche with lime and cilantro garnish">
+                        </div>
+                    </figure>
+                    <div class="menu-card-body">
+                        <div class="menu-card-header">
+                            <h3>Lobster Ceviche</h3>
+                            <span class="menu-price">$32</span>
+                        </div>
+                        <p>Fresh lobster marinated in lime and aji amarillo. Tiger's milk, red onion, cilantro.</p>
+                    </div>
+                </article>
+                <article class="menu-card reveal">
+                    <figure class="menu-card-figure">
+                        <div class="img-placeholder img-placeholder--landscape">
+                            <img src="images/menu-paella.png" alt="Traditional paella in a wide pan with mussels, shrimp, and saffron rice">
+                        </div>
+                    </figure>
+                    <div class="menu-card-body">
+                        <div class="menu-card-header">
+                            <h3>Paella Marinera</h3>
+                            <span class="menu-price">$36</span>
+                        </div>
+                        <p>Bomba rice, saffron, assorted shellfish. Cooked in the pan until the socarrat forms. For two.</p>
+                    </div>
+                </article>
+                <article class="menu-card reveal">
+                    <figure class="menu-card-figure">
+                        <div class="img-placeholder img-placeholder--landscape">
+                            <img src="images/menu-churrasco.png" alt="Grilled churrasco steak sliced and fanned on a plate with chimichurri">
+                        </div>
+                    </figure>
+                    <div class="menu-card-body">
+                        <div class="menu-card-header">
+                            <h3>Churrasco</h3>
+                            <span class="menu-price">$34</span>
+                        </div>
+                        <p>Skirt steak over high heat, finished with chimichurri. Yuca fries, black beans, sweet plantain.</p>
+                    </div>
+                </article>
+                <article class="menu-card reveal">
+                    <figure class="menu-card-figure">
+                        <div class="img-placeholder img-placeholder--landscape">
+                            <img src="images/menu-tres-leches.png" alt="Slice of tres leches cake with whipped cream and berry garnish">
+                        </div>
+                    </figure>
+                    <div class="menu-card-body">
+                        <div class="menu-card-header">
+                            <h3>Tres Leches</h3>
+                            <span class="menu-price">$14</span>
+                        </div>
+                        <p>Classic sponge soaked in three milks. Chantilly cream, seasonal berries.</p>
+                    </div>
+                </article>
+            </div>
+            <div class="menu-cta reveal">
+                <a href="#" class="btn btn-outline-dark">View Full Menu (PDF)</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery -->
+    <section id="gallery" class="gallery" aria-label="Gallery">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-kicker">The Space</span>
+                <h2>An Evening at La Costa</h2>
+            </div>
+            <div class="gallery-grid">
+                <figure class="gallery-item gallery-item--wide reveal" tabindex="0" role="button" aria-label="View larger: Outdoor terrace with ocean view at dusk">
+                    <div class="img-placeholder img-placeholder--landscape">
+                        <img src="images/gallery-terrace-dusk.png" alt="Outdoor dining terrace overlooking the ocean at dusk, string lights overhead">
+                    </div>
+                    <figcaption>The terrace at golden hour</figcaption>
+                </figure>
+                <figure class="gallery-item reveal" tabindex="0" role="button" aria-label="View larger: Fresh oysters on crushed ice">
+                    <div class="img-placeholder img-placeholder--square">
+                        <img src="images/gallery-oysters.png" alt="Platter of fresh oysters on crushed ice with lemon wedges">
+                    </div>
+                    <figcaption>From today's raw bar</figcaption>
+                </figure>
+                <figure class="gallery-item reveal" tabindex="0" role="button" aria-label="View larger: Handcrafted cocktails">
+                    <div class="img-placeholder img-placeholder--square">
+                        <img src="images/gallery-cocktails.png" alt="Two craft cocktails on a marble bar top with sunset light">
+                    </div>
+                    <figcaption>Handcrafted by our bar team</figcaption>
+                </figure>
+                <figure class="gallery-item reveal" tabindex="0" role="button" aria-label="View larger: Dining room interior">
+                    <div class="img-placeholder img-placeholder--square">
+                        <img src="images/gallery-dining-room.png" alt="Interior dining room with white linen tablecloths and candle light">
+                    </div>
+                    <figcaption>The main dining room</figcaption>
+                </figure>
+                <figure class="gallery-item gallery-item--wide reveal" tabindex="0" role="button" aria-label="View larger: Chef plating a dish">
+                    <div class="img-placeholder img-placeholder--landscape">
+                        <img src="images/gallery-kitchen-detail.png" alt="Chef carefully plating a seafood dish under warm kitchen light">
+                    </div>
+                    <figcaption>Precision in the kitchen</figcaption>
+                </figure>
+            </div>
+        </div>
+    </section>
+
+    <!-- Events -->
+    <section class="events" aria-label="Private events">
+        <div class="container">
+            <div class="events-inner reveal">
+                <span class="section-kicker">Private Dining</span>
+                <h2>Gatherings Worth Remembering</h2>
+                <p>Our private dining room seats up to 24 guests for celebrations, business dinners, and milestone events. Custom menus crafted by Chef Vega. Wine pairings curated by our sommelier.</p>
+                <a href="mailto:events@lacosta.com" class="btn btn-gold">Inquire About Events</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hours & Location -->
+    <section id="contact" class="info-section" aria-label="Hours and location">
+        <div class="container">
+            <div class="info-grid">
+                <div class="info-card reveal">
+                    <h3>Hours</h3>
+                    <dl class="hours-list">
+                        <div class="hours-row">
+                            <dt>Monday &ndash; Thursday</dt>
+                            <dd>12 pm &ndash; 10 pm</dd>
+                        </div>
+                        <div class="hours-row">
+                            <dt>Friday &ndash; Saturday</dt>
+                            <dd>12 pm &ndash; 11 pm</dd>
+                        </div>
+                        <div class="hours-row">
+                            <dt>Sunday</dt>
+                            <dd>11 am &ndash; 9 pm</dd>
+                        </div>
+                    </dl>
+                </div>
+                <div class="info-card reveal">
+                    <h3>Location</h3>
+                    <address>
+                        123 Ocean Drive<br>
+                        Miami Beach, FL 33139
+                    </address>
+                    <p class="info-phone"><a href="tel:+13055551234">(305) 555-1234</a></p>
+                    <a href="https://maps.google.com" target="_blank" rel="noopener" class="btn btn-outline-light">Get Directions</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reservations -->
+    <section id="reservations" class="reservations" aria-label="Make a reservation">
+        <div class="container">
+            <div class="reservations-inner">
+                <div class="section-header reveal">
+                    <span class="section-kicker">Reservations</span>
+                    <h2>Join Us</h2>
+                    <p>We look forward to welcoming you. Complete the form below and our team will confirm your table.</p>
+                </div>
+                <form class="reservation-form" id="reservationForm" novalidate>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="res-name">Full Name</label>
+                            <input type="text" id="res-name" name="name" required autocomplete="name">
+                        </div>
+                        <div class="form-group">
+                            <label for="res-email">Email</label>
+                            <input type="email" id="res-email" name="email" required autocomplete="email">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="res-phone">Phone</label>
+                            <input type="tel" id="res-phone" name="phone" required autocomplete="tel">
+                        </div>
+                        <div class="form-group">
+                            <label for="res-guests">Guests</label>
+                            <input type="number" id="res-guests" name="guests" min="1" max="20" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="res-date">Date</label>
+                            <input type="date" id="res-date" name="date" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="res-time">Time</label>
+                            <input type="time" id="res-time" name="time" required>
+                        </div>
+                    </div>
+                    <div class="form-group form-group--full">
+                        <label for="res-notes">Special Requests</label>
+                        <textarea id="res-notes" name="notes" rows="3"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-gold btn-submit">Request Reservation</button>
+                </form>
+                <p class="reservations-alt">Prefer to call? <a href="tel:+13055551234">(305) 555-1234</a></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reservation confirmation modal -->
+    <div class="modal-overlay" id="confirmModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" hidden>
+        <div class="modal">
+            <div class="modal-check" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
+            </div>
+            <h3 id="modalTitle">Reservation Requested</h3>
+            <p>Thank you. We will contact you shortly to confirm your table.</p>
+            <button class="btn btn-gold" id="modalClose">Close</button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer" role="contentinfo">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <a href="#" class="footer-logo">La Costa</a>
+                    <p>Refined coastal cuisine on Miami's waterfront. Fresh seafood, Latin-inflected dishes, and an atmosphere shaped by the sea.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Navigate</h4>
+                    <ul>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#kitchen">The Kitchen</a></li>
+                        <li><a href="#menu">Menu</a></li>
+                        <li><a href="#gallery">Gallery</a></li>
+                        <li><a href="#reservations">Reservations</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Connect</h4>
+                    <ul>
+                        <li><a href="#" target="_blank" rel="noopener">Instagram</a></li>
+                        <li><a href="#" target="_blank" rel="noopener">Facebook</a></li>
+                        <li><a href="mailto:hello@lacosta.com">hello@lacosta.com</a></li>
+                        <li><a href="tel:+13055551234">(305) 555-1234</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-rule"></div>
+                <p>&copy; 2026 La Costa Restaurant. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

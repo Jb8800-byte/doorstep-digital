@@ -1,0 +1,1147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Basecamp Digital — Websites for Local Businesses</title>
+  <meta name="description" content="Basecamp Digital builds sharp, conversion-focused websites for restaurants, gyms, salons, and local businesses. We make your online presence match your in-person experience.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ===== RESET ===== */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+
+    /* ===== TOKENS ===== */
+    :root {
+      --bg: #FAFAF8;
+      --bg-alt: #F1F0EC;
+      --bg-dark: #1A1A18;
+      --bg-dark-alt: #242422;
+      --text: #1A1A18;
+      --text-muted: #6E6E68;
+      --text-inv: #FAFAF8;
+      --text-inv-muted: #A8A8A2;
+      --accent: #C44B28;
+      --accent-hover: #A83D1F;
+      --rule: rgba(26,26,24,0.10);
+      --rule-inv: rgba(250,250,248,0.10);
+      --heading: 'Space Grotesk', system-ui, sans-serif;
+      --body: 'DM Sans', system-ui, sans-serif;
+      --ease: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      --radius: 6px;
+    }
+
+    body {
+      font-family: var(--body);
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    img { max-width: 100%; display: block; }
+    a { text-decoration: none; color: inherit; }
+
+    .container {
+      width: 100%;
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ===== NAV ===== */
+    .nav {
+      position: fixed; top: 0; left: 0; width: 100%;
+      z-index: 100;
+      background: rgba(250,250,248,0.88);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--rule);
+      transition: background 0.3s;
+    }
+    .nav .container {
+      display: flex; align-items: center; justify-content: space-between;
+      height: 68px;
+    }
+    .nav-brand {
+      font-family: var(--heading);
+      font-weight: 700;
+      font-size: 1.15rem;
+      letter-spacing: -0.02em;
+      color: var(--text);
+    }
+    .nav-brand span { color: var(--accent); }
+    .nav-links {
+      display: flex; gap: 32px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 0.88rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      letter-spacing: 0.01em;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--text); }
+    .nav-cta {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-inv);
+      background: var(--text);
+      padding: 10px 22px;
+      border-radius: var(--radius);
+      transition: background 0.2s, transform 0.15s;
+    }
+    .nav-cta:hover { background: var(--accent); transform: translateY(-1px); }
+
+    .menu-toggle {
+      display: none;
+      background: none; border: none; cursor: pointer;
+      width: 28px; height: 20px; position: relative;
+    }
+    .menu-toggle span {
+      display: block; width: 100%; height: 2px;
+      background: var(--text);
+      position: absolute; left: 0;
+      transition: all 0.3s var(--ease);
+    }
+    .menu-toggle span:nth-child(1) { top: 0; }
+    .menu-toggle span:nth-child(2) { top: 9px; }
+    .menu-toggle span:nth-child(3) { top: 18px; }
+    .menu-toggle.active span:nth-child(1) { top: 9px; transform: rotate(45deg); }
+    .menu-toggle.active span:nth-child(2) { opacity: 0; }
+    .menu-toggle.active span:nth-child(3) { top: 9px; transform: rotate(-45deg); }
+
+    /* ===== HERO ===== */
+    .hero {
+      padding: 160px 0 100px;
+      position: relative;
+    }
+    .hero .container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+    .hero-label {
+      display: inline-block;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 20px;
+    }
+    .hero h1 {
+      font-family: var(--heading);
+      font-size: clamp(2.4rem, 5vw, 3.6rem);
+      font-weight: 700;
+      line-height: 1.12;
+      letter-spacing: -0.03em;
+      color: var(--text);
+      margin-bottom: 20px;
+    }
+    .hero-sub {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+      max-width: 480px;
+      margin-bottom: 36px;
+    }
+    .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-family: var(--body);
+      font-size: 0.9rem;
+      font-weight: 600;
+      padding: 14px 28px;
+      border-radius: var(--radius);
+      border: none; cursor: pointer;
+      transition: all 0.2s var(--ease);
+    }
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+    }
+    .btn-primary:hover { background: var(--accent-hover); transform: translateY(-1px); }
+    .btn-secondary {
+      background: transparent;
+      color: var(--text);
+      border: 1.5px solid var(--rule);
+    }
+    .btn-secondary:hover { border-color: var(--text); }
+
+    /* Hero visual — stacked browser mockups */
+    .hero-visual {
+      position: relative;
+      height: 420px;
+    }
+    .browser-mock {
+      position: absolute;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.12), 0 4px 16px rgba(0,0,0,0.06);
+      transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease);
+    }
+    .browser-mock:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 28px 70px rgba(0,0,0,0.16), 0 6px 20px rgba(0,0,0,0.08);
+    }
+    .browser-bar {
+      height: 32px;
+      background: #E8E8E4;
+      display: flex; align-items: center; padding: 0 12px; gap: 6px;
+    }
+    .browser-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+    }
+    .browser-dot:nth-child(1) { background: #F87171; }
+    .browser-dot:nth-child(2) { background: #FBBF24; }
+    .browser-dot:nth-child(3) { background: #34D399; }
+    .browser-url {
+      margin-left: 10px;
+      font-size: 0.68rem;
+      color: #888;
+      background: #D9D9D4;
+      padding: 3px 10px;
+      border-radius: 4px;
+      flex: 1;
+      max-width: 200px;
+    }
+
+    .mock-la-costa {
+      width: 380px;
+      top: 10px; left: 0;
+      z-index: 2;
+    }
+    .mock-la-costa .mock-body {
+      height: 240px;
+      background: linear-gradient(135deg, #0F2B3C, #1B3A52);
+      position: relative;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      color: #FAF8F5;
+    }
+    .mock-la-costa .mock-body h3 {
+      font-family: 'Georgia', serif;
+      font-size: 1.6rem;
+      font-weight: 400;
+      font-style: italic;
+      letter-spacing: 0.04em;
+      margin-bottom: 6px;
+    }
+    .mock-la-costa .mock-body p {
+      font-size: 0.72rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #C9A05F;
+    }
+    .mock-la-costa .mock-body::before {
+      content: '';
+      position: absolute;
+      top: 16px; left: 16px; right: 16px; bottom: 16px;
+      border: 1px solid rgba(201,160,95,0.25);
+      border-radius: 2px;
+      pointer-events: none;
+    }
+
+    .mock-apex {
+      width: 340px;
+      top: 120px; right: 0;
+      z-index: 3;
+    }
+    .mock-apex .mock-body {
+      height: 220px;
+      background: #0a0a0a;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      color: #fff;
+      position: relative;
+      overflow: hidden;
+    }
+    .mock-apex .mock-body::before {
+      content: '';
+      position: absolute;
+      top: -40px; right: -40px;
+      width: 140px; height: 140px;
+      background: linear-gradient(135deg, #2979ff, #ff6d00);
+      border-radius: 50%;
+      opacity: 0.2;
+      filter: blur(30px);
+    }
+    .mock-apex .mock-body h3 {
+      font-family: 'Inter', sans-serif;
+      font-size: 1.3rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 8px;
+    }
+    .mock-apex .mock-body .mock-tag {
+      font-size: 0.65rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      padding: 5px 14px;
+      border: 1px solid rgba(41,121,255,0.4);
+      border-radius: 20px;
+      color: #2979ff;
+    }
+
+    /* ===== SECTION SHARED ===== */
+    .section-tag {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 14px;
+    }
+    .section-title {
+      font-family: var(--heading);
+      font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.18;
+      margin-bottom: 16px;
+    }
+    .section-desc {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      max-width: 520px;
+      line-height: 1.7;
+    }
+
+    /* ===== SERVICES ===== */
+    .services {
+      padding: 100px 0;
+      background: var(--bg);
+    }
+    .services-header {
+      text-align: center;
+      margin-bottom: 64px;
+    }
+    .services-header .section-desc { margin: 0 auto; }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .service-card {
+      padding: 36px 30px;
+      border-radius: 10px;
+      border: 1px solid var(--rule);
+      background: var(--bg);
+      transition: all 0.3s var(--ease);
+    }
+    .service-card:hover {
+      border-color: transparent;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.07);
+      transform: translateY(-4px);
+    }
+    .service-icon {
+      width: 44px; height: 44px;
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 22px;
+      font-size: 1.2rem;
+    }
+    .service-icon.design { background: #FEE2E2; color: #DC2626; }
+    .service-icon.dev { background: #DBEAFE; color: #2563EB; }
+    .service-icon.seo { background: #D1FAE5; color: #059669; }
+    .service-card h3 {
+      font-family: var(--heading);
+      font-size: 1.15rem;
+      font-weight: 600;
+      margin-bottom: 10px;
+      letter-spacing: -0.01em;
+    }
+    .service-card p {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      line-height: 1.65;
+    }
+
+    /* ===== WORK / PORTFOLIO ===== */
+    .work {
+      padding: 100px 0 120px;
+      background: var(--bg-dark);
+      color: var(--text-inv);
+    }
+    .work .section-desc { color: var(--text-inv-muted); }
+    .work-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 56px;
+    }
+    .work-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+    }
+    .work-card {
+      border-radius: 12px;
+      overflow: hidden;
+      background: var(--bg-dark-alt);
+      border: 1px solid var(--rule-inv);
+      transition: all 0.35s var(--ease);
+      position: relative;
+    }
+    .work-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(250,250,248,0.18);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+    }
+    .work-thumb {
+      width: 100%;
+      aspect-ratio: 4/3;
+      overflow: hidden;
+      position: relative;
+    }
+    .work-thumb-inner {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.4s var(--ease);
+    }
+    .work-card:hover .work-thumb-inner { transform: scale(1.03); }
+
+    /* La Costa preview thumb */
+    .thumb-lacosta {
+      background: linear-gradient(155deg, #0F2B3C 0%, #1B3A52 50%, #0F2B3C 100%);
+      position: relative;
+    }
+    .thumb-lacosta::after {
+      content: '';
+      position: absolute;
+      inset: 20px;
+      border: 1px solid rgba(201,160,95,0.2);
+      pointer-events: none;
+    }
+    .thumb-lacosta h4 {
+      font-family: 'Georgia', serif;
+      font-size: 1.7rem;
+      font-weight: 400;
+      font-style: italic;
+      color: #FAF8F5;
+      letter-spacing: 0.03em;
+    }
+    .thumb-lacosta span {
+      font-size: 0.68rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #C9A05F;
+      margin-top: 6px;
+    }
+
+    /* Apex preview thumb */
+    .thumb-apex {
+      background: #0a0a0a;
+      position: relative;
+      overflow: hidden;
+    }
+    .thumb-apex::before {
+      content: '';
+      position: absolute;
+      top: -20%; right: -20%;
+      width: 60%; height: 60%;
+      background: radial-gradient(circle, rgba(41,121,255,0.15), transparent 70%);
+      pointer-events: none;
+    }
+    .thumb-apex::after {
+      content: '';
+      position: absolute;
+      bottom: -20%; left: -10%;
+      width: 50%; height: 50%;
+      background: radial-gradient(circle, rgba(255,109,0,0.1), transparent 70%);
+      pointer-events: none;
+    }
+    .thumb-apex h4 {
+      font-family: 'Inter', sans-serif;
+      font-size: 1.3rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #fff;
+    }
+    .thumb-apex span {
+      display: inline-block;
+      margin-top: 10px;
+      font-size: 0.6rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 4px 14px;
+      border: 1px solid rgba(41,121,255,0.4);
+      border-radius: 20px;
+      color: #2979ff;
+    }
+
+    /* Salon coming-soon thumb */
+    .thumb-salon {
+      background: linear-gradient(145deg, #F5E6D8, #E8D5C4);
+      position: relative;
+    }
+    .thumb-salon h4 {
+      font-family: 'Georgia', serif;
+      font-size: 1.4rem;
+      font-weight: 400;
+      color: #5C4A3A;
+      letter-spacing: 0.02em;
+    }
+    .thumb-salon span {
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #9B8574;
+      margin-top: 8px;
+    }
+    .coming-soon-badge {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 5px 12px;
+      border-radius: 20px;
+      background: rgba(92, 74, 58, 0.12);
+      color: #5C4A3A;
+    }
+
+    .work-info { padding: 26px 26px 28px; }
+    .work-type {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+    .work-info h3 {
+      font-family: var(--heading);
+      font-size: 1.2rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      margin-bottom: 8px;
+      color: var(--text-inv);
+    }
+    .work-info p {
+      font-size: 0.88rem;
+      color: var(--text-inv-muted);
+      line-height: 1.6;
+      margin-bottom: 18px;
+    }
+    .work-tags {
+      display: flex; flex-wrap: wrap; gap: 6px;
+    }
+    .work-tag {
+      font-size: 0.7rem;
+      font-weight: 500;
+      padding: 4px 11px;
+      border-radius: 4px;
+      background: rgba(250,250,248,0.06);
+      color: var(--text-inv-muted);
+    }
+    .work-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--accent);
+      margin-top: 16px;
+      transition: gap 0.2s;
+    }
+    .work-link:hover { gap: 10px; }
+    .work-link svg { width: 14px; height: 14px; }
+
+    /* ===== PROCESS ===== */
+    .process {
+      padding: 100px 0;
+      background: var(--bg-alt);
+    }
+    .process-header {
+      text-align: center;
+      margin-bottom: 64px;
+    }
+    .process-header .section-desc { margin: 0 auto; }
+    .process-steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      position: relative;
+    }
+    .process-step {
+      text-align: center;
+      padding: 30px 20px;
+    }
+    .step-num {
+      display: inline-flex;
+      align-items: center; justify-content: center;
+      width: 48px; height: 48px;
+      border-radius: 50%;
+      background: var(--text);
+      color: var(--text-inv);
+      font-family: var(--heading);
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+    .process-step h3 {
+      font-family: var(--heading);
+      font-size: 1.05rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+    .process-step p {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* ===== ABOUT ===== */
+    .about {
+      padding: 100px 0;
+      background: var(--bg);
+    }
+    .about .container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+    .about-visual {
+      background: var(--bg-alt);
+      border-radius: 12px;
+      aspect-ratio: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .about-visual-text {
+      font-family: var(--heading);
+      font-size: 4.5rem;
+      font-weight: 700;
+      color: var(--text);
+      opacity: 0.06;
+      letter-spacing: -0.04em;
+      line-height: 1;
+    }
+    .about-stats {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      background: var(--text);
+      padding: 24px 20px;
+    }
+    .stat {
+      text-align: center;
+    }
+    .stat-num {
+      font-family: var(--heading);
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--text-inv);
+    }
+    .stat-label {
+      font-size: 0.72rem;
+      color: var(--text-inv-muted);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-top: 2px;
+    }
+    .about-content .section-desc {
+      margin-bottom: 24px;
+    }
+    .about-detail {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+      margin-bottom: 32px;
+    }
+    .about-tools {
+      display: flex; flex-wrap: wrap; gap: 8px;
+    }
+    .tool-tag {
+      font-size: 0.78rem;
+      font-weight: 500;
+      padding: 6px 14px;
+      border-radius: var(--radius);
+      background: var(--bg-alt);
+      color: var(--text);
+    }
+
+    /* ===== CTA ===== */
+    .cta-section {
+      padding: 100px 0;
+      background: var(--bg-dark);
+      text-align: center;
+    }
+    .cta-section .section-tag { color: var(--accent); }
+    .cta-section .section-title { color: var(--text-inv); }
+    .cta-section .section-desc {
+      color: var(--text-inv-muted);
+      margin: 0 auto 40px;
+    }
+    .cta-actions { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+    .cta-email {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.9rem;
+      color: var(--text-inv-muted);
+      margin-top: 24px;
+    }
+    .cta-email a {
+      color: var(--text-inv);
+      font-weight: 500;
+      border-bottom: 1px solid var(--rule-inv);
+      transition: border-color 0.2s;
+    }
+    .cta-email a:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* ===== FOOTER ===== */
+    .footer {
+      padding: 28px 0;
+      background: var(--bg-dark);
+      border-top: 1px solid var(--rule-inv);
+    }
+    .footer .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .footer-left {
+      font-size: 0.82rem;
+      color: var(--text-inv-muted);
+    }
+    .footer-links {
+      display: flex; gap: 24px; list-style: none;
+    }
+    .footer-links a {
+      font-size: 0.82rem;
+      color: var(--text-inv-muted);
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--text-inv); }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 960px) {
+      .hero .container { grid-template-columns: 1fr; gap: 40px; }
+      .hero-visual { height: 320px; margin: 0 auto; max-width: 500px; }
+      .mock-la-costa { width: 300px; }
+      .mock-apex { width: 270px; }
+      .work-grid { grid-template-columns: repeat(2, 1fr); }
+      .work-grid .work-card:last-child {
+        grid-column: 1 / -1;
+        max-width: 400px;
+        justify-self: center;
+      }
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+      .services-grid .service-card:last-child {
+        grid-column: 1 / -1;
+        max-width: 400px;
+        justify-self: center;
+      }
+      .process-steps { grid-template-columns: repeat(2, 1fr); }
+      .about .container { grid-template-columns: 1fr; gap: 40px; }
+      .about-visual { max-height: 360px; }
+    }
+    @media (max-width: 680px) {
+      .nav-links, .nav-cta-desktop { display: none; }
+      .menu-toggle { display: block; }
+      .mobile-menu {
+        position: fixed;
+        top: 68px; left: 0; right: 0; bottom: 0;
+        background: rgba(250,250,248,0.98);
+        backdrop-filter: blur(12px);
+        display: flex; flex-direction: column;
+        align-items: center; justify-content: center;
+        gap: 28px;
+        transform: translateY(-100%);
+        opacity: 0;
+        transition: all 0.35s var(--ease);
+        z-index: 99;
+        pointer-events: none;
+      }
+      .mobile-menu.open {
+        transform: translateY(0);
+        opacity: 1;
+        pointer-events: auto;
+      }
+      .mobile-menu a {
+        font-family: var(--heading);
+        font-size: 1.4rem;
+        font-weight: 600;
+        color: var(--text);
+        letter-spacing: -0.01em;
+      }
+      .hero { padding: 130px 0 60px; }
+      .hero h1 { font-size: 2.2rem; }
+      .hero-visual { height: 280px; }
+      .mock-la-costa { width: 240px; }
+      .mock-apex { width: 220px; top: 100px; }
+      .work-grid { grid-template-columns: 1fr; }
+      .work-grid .work-card:last-child { max-width: none; }
+      .services-grid { grid-template-columns: 1fr; }
+      .services-grid .service-card:last-child { max-width: none; }
+      .process-steps { grid-template-columns: 1fr; }
+      .work-header { flex-direction: column; align-items: flex-start; gap: 20px; }
+      .footer .container { flex-direction: column; gap: 12px; text-align: center; }
+      .about-stats { padding: 18px 12px; }
+      .stat-num { font-size: 1.2rem; }
+    }
+
+    /* ===== ANIMATIONS ===== */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.6s var(--ease), transform 0.6s var(--ease);
+    }
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Nav -->
+  <nav class="nav">
+    <div class="container">
+      <a href="#" class="nav-brand">basecamp<span>.</span>digital</a>
+      <ul class="nav-links">
+        <li><a href="#services">Services</a></li>
+        <li><a href="#work">Work</a></li>
+        <li><a href="#process">Process</a></li>
+        <li><a href="#about">About</a></li>
+      </ul>
+      <a href="#contact" class="nav-cta nav-cta-desktop">Get in Touch</a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#services">Services</a>
+    <a href="#work">Work</a>
+    <a href="#process">Process</a>
+    <a href="#about">About</a>
+    <a href="#contact">Get in Touch</a>
+  </div>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-text">
+        <span class="hero-label">Web Studio for Local Businesses</span>
+        <h1>Websites that bring locals through your door.</h1>
+        <p class="hero-sub">We build clean, fast websites for restaurants, gyms, salons, and small businesses — designed to turn visitors into customers.</p>
+        <div class="hero-actions">
+          <a href="#contact" class="btn btn-primary">Start a Project</a>
+          <a href="#work" class="btn btn-secondary">See My Work</a>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="browser-mock mock-la-costa">
+          <div class="browser-bar">
+            <span class="browser-dot"></span>
+            <span class="browser-dot"></span>
+            <span class="browser-dot"></span>
+            <span class="browser-url">lacosta-miami.com</span>
+          </div>
+          <div class="mock-body">
+            <h3>La Costa</h3>
+            <p>Coastal Dining &bull; Miami</p>
+          </div>
+        </div>
+        <div class="browser-mock mock-apex">
+          <div class="browser-bar">
+            <span class="browser-dot"></span>
+            <span class="browser-dot"></span>
+            <span class="browser-dot"></span>
+            <span class="browser-url">apexfitness.com</span>
+          </div>
+          <div class="mock-body">
+            <h3>APEX FITNESS</h3>
+            <span class="mock-tag">Transform Your Body</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section id="services" class="services">
+    <div class="container">
+      <div class="services-header fade-up">
+        <span class="section-tag">What We Do</span>
+        <h2 class="section-title">Built for businesses<br>that serve people in person.</h2>
+        <p class="section-desc">Your space has a vibe. Your website should too. We build sites that capture the feel of your business and make it easy for new customers to find you, book you, or walk in.</p>
+      </div>
+      <div class="services-grid">
+        <div class="service-card fade-up">
+          <div class="service-icon design">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/></svg>
+          </div>
+          <h3>Design & Branding</h3>
+          <p>Custom layouts built from scratch around your brand's personality — no templates, no cookie-cutter look. Every detail is intentional.</p>
+        </div>
+        <div class="service-card fade-up">
+          <div class="service-icon dev">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+          </div>
+          <h3>Development</h3>
+          <p>Fast, responsive, and built to work on every screen. Clean code, quick load times, and zero bloat. Your site just works.</p>
+        </div>
+        <div class="service-card fade-up">
+          <div class="service-icon seo">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          </div>
+          <h3>SEO & Local Search</h3>
+          <p>Show up when locals search "best [your business] near me." We handle the technical SEO so Google knows exactly what you offer.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Work -->
+  <section id="work" class="work">
+    <div class="container">
+      <div class="work-header fade-up">
+        <div>
+          <span class="section-tag">Selected Work</span>
+          <h2 class="section-title">Real sites for real businesses.</h2>
+          <p class="section-desc">Each project is crafted to match the energy of the business — from refined coastal dining to high-intensity fitness.</p>
+        </div>
+      </div>
+      <div class="work-grid">
+
+        <!-- La Costa -->
+        <div class="work-card fade-up">
+          <div class="work-thumb">
+            <div class="work-thumb-inner thumb-lacosta">
+              <h4>La Costa</h4>
+              <span>Coastal Dining &bull; Miami</span>
+            </div>
+          </div>
+          <div class="work-info">
+            <span class="work-type">Restaurant</span>
+            <h3>La Costa — Coastal Dining</h3>
+            <p>An elegant, refined site for an upscale seafood restaurant. Full menu system, reservations, gallery, and Google Maps integration.</p>
+            <div class="work-tags">
+              <span class="work-tag">Responsive</span>
+              <span class="work-tag">SEO</span>
+              <span class="work-tag">Menu System</span>
+              <span class="work-tag">Reservations</span>
+            </div>
+            <a href="la-costa-restaurant/index.html" class="work-link">
+              View Project <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Apex Fitness -->
+        <div class="work-card fade-up">
+          <div class="work-thumb">
+            <div class="work-thumb-inner thumb-apex">
+              <h4>APEX FITNESS</h4>
+              <span>Transform Your Body</span>
+            </div>
+          </div>
+          <div class="work-info">
+            <span class="work-type">Gym / Fitness</span>
+            <h3>Apex Fitness</h3>
+            <p>A bold, high-energy site for a premium fitness center. Class schedules, trainer profiles, membership tiers, and strong CTAs throughout.</p>
+            <div class="work-tags">
+              <span class="work-tag">Dark Theme</span>
+              <span class="work-tag">Responsive</span>
+              <span class="work-tag">Schedules</span>
+              <span class="work-tag">CTAs</span>
+            </div>
+            <a href="apex-fitness/index.html" class="work-link">
+              View Project <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Salon — Coming Soon -->
+        <div class="work-card fade-up">
+          <div class="work-thumb">
+            <div class="work-thumb-inner thumb-salon">
+              <span class="coming-soon-badge">Coming Soon</span>
+              <h4>Luxe Salon</h4>
+              <span>Beauty &bull; Wellness</span>
+            </div>
+          </div>
+          <div class="work-info">
+            <span class="work-type">Salon / Spa</span>
+            <h3>Salon Site — In Progress</h3>
+            <p>A warm, elegant site for a local salon and spa. Online booking, service menus, stylist profiles, and before/after galleries.</p>
+            <div class="work-tags">
+              <span class="work-tag">Booking</span>
+              <span class="work-tag">Services</span>
+              <span class="work-tag">Gallery</span>
+              <span class="work-tag">Warm Palette</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Process -->
+  <section id="process" class="process">
+    <div class="container">
+      <div class="process-header fade-up">
+        <span class="section-tag">How It Works</span>
+        <h2 class="section-title">From first call to launch day.</h2>
+        <p class="section-desc">A straightforward process that keeps you in the loop without drowning you in decisions.</p>
+      </div>
+      <div class="process-steps">
+        <div class="process-step fade-up">
+          <div class="step-num">1</div>
+          <h3>Discovery</h3>
+          <p>We talk about your business, your customers, and what your site needs to do. We do the research.</p>
+        </div>
+        <div class="process-step fade-up">
+          <div class="step-num">2</div>
+          <h3>Design</h3>
+          <p>We create mockups based on your brand. You see the full layout before a single line of code is written.</p>
+        </div>
+        <div class="process-step fade-up">
+          <div class="step-num">3</div>
+          <h3>Build</h3>
+          <p>Clean, fast code. Responsive on every device. We handle hosting setup, domain, and the technical stuff.</p>
+        </div>
+        <div class="process-step fade-up">
+          <div class="step-num">4</div>
+          <h3>Launch</h3>
+          <p>Your site goes live. We stick around for tweaks, updates, and making sure everything runs smooth.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about" class="about">
+    <div class="container">
+      <div class="about-visual fade-up">
+        <span class="about-visual-text">BD</span>
+        <div class="about-stats">
+          <div class="stat">
+            <div class="stat-num">2+</div>
+            <div class="stat-label">Projects</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num">100%</div>
+            <div class="stat-label">Responsive</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num">Miami</div>
+            <div class="stat-label">Based</div>
+          </div>
+        </div>
+      </div>
+      <div class="about-content fade-up">
+        <span class="section-tag">About</span>
+        <h2 class="section-title">A small studio focused on local businesses.</h2>
+        <p class="section-desc">Basecamp Digital works with restaurants, gyms, salons, and other service businesses that need a website that actually looks and works like their business feels.</p>
+        <p class="about-detail">Too many local businesses are stuck with dated sites or generic templates that don't do them justice. We build from scratch so every site captures your specific brand, loads fast, shows up in local search, and converts visitors into customers walking through your door.</p>
+        <div class="about-tools">
+          <span class="tool-tag">HTML / CSS</span>
+          <span class="tool-tag">JavaScript</span>
+          <span class="tool-tag">Responsive Design</span>
+          <span class="tool-tag">SEO</span>
+          <span class="tool-tag">Google Maps</span>
+          <span class="tool-tag">Performance</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section id="contact" class="cta-section">
+    <div class="container">
+      <span class="section-tag fade-up">Let's Work Together</span>
+      <h2 class="section-title fade-up">Ready to upgrade your<br>online presence?</h2>
+      <p class="section-desc fade-up">Whether you're opening soon or need a fresh look, let's talk about what your business needs.</p>
+      <div class="cta-actions fade-up">
+        <a href="mailto:jakeberlin15@gmail.com?subject=Website%20Inquiry" class="btn btn-primary">Start a Conversation</a>
+      </div>
+      <div class="cta-email fade-up">
+        <span>or email us directly at</span>
+        <a href="mailto:jakeberlin15@gmail.com">jakeberlin15@gmail.com</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <span class="footer-left">&copy; 2026 Basecamp Digital.</span>
+      <ul class="footer-links">
+        <li><a href="#work">Work</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile menu toggle
+    const toggle = document.getElementById('menuToggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+    toggle.addEventListener('click', () => {
+      toggle.classList.toggle('active');
+      mobileMenu.classList.toggle('open');
+    });
+    mobileMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        toggle.classList.remove('active');
+        mobileMenu.classList.remove('open');
+      });
+    });
+
+    // Scroll-triggered fade-ups
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+    // Nav background on scroll
+    const nav = document.querySelector('.nav');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 40) {
+        nav.style.background = 'rgba(250,250,248,0.96)';
+        nav.style.boxShadow = '0 1px 8px rgba(0,0,0,0.04)';
+      } else {
+        nav.style.background = 'rgba(250,250,248,0.88)';
+        nav.style.boxShadow = 'none';
+      }
+    });
+  </script>
+</body>
+</html>
