@@ -3,34 +3,37 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Basecamp Digital — Websites for Local Businesses</title>
-  <meta name="description" content="Basecamp Digital builds sharp, conversion-focused websites for restaurants, gyms, salons, and local businesses. We make your online presence match your in-person experience.">
+  <title>Doorstep Digital — Websites for Local Businesses</title>
+  <meta name="description" content="Doorstep Digital builds sharp, conversion-focused websites for restaurants, gyms, salons, and local businesses. We make your online presence match your in-person experience.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Space+Grotesk:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@1,400;1,500&display=swap" rel="stylesheet">
   <style>
-    /* ===== RESET ===== */
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
     html { scroll-behavior: smooth; scroll-padding-top: 80px; }
 
-    /* ===== TOKENS ===== */
     :root {
       --bg: #FAFAF8;
       --bg-alt: #F1F0EC;
-      --bg-dark: #1A1A18;
-      --bg-dark-alt: #242422;
+      --bg-dark: #0D1117;
+      --bg-dark-mid: #141A23;
+      --bg-dark-alt: #1A1F2E;
       --text: #1A1A18;
       --text-muted: #6E6E68;
       --text-inv: #FAFAF8;
       --text-inv-muted: #A8A8A2;
-      --accent: #C44B28;
-      --accent-hover: #A83D1F;
+      --accent: #E85D3A;
+      --accent-hover: #D14E2D;
+      --teal: #2A9D8F;
+      --teal-hover: #238578;
       --rule: rgba(26,26,24,0.10);
       --rule-inv: rgba(250,250,248,0.10);
       --heading: 'Space Grotesk', system-ui, sans-serif;
-      --body: 'DM Sans', system-ui, sans-serif;
+      --body: 'Plus Jakarta Sans', system-ui, sans-serif;
+      --serif: 'Playfair Display', Georgia, serif;
       --ease: cubic-bezier(0.25, 0.46, 0.45, 0.94);
-      --radius: 6px;
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+      --radius: 8px;
     }
 
     body {
@@ -47,9 +50,21 @@
 
     .container {
       width: 100%;
-      max-width: 1120px;
+      max-width: 1140px;
       margin: 0 auto;
       padding: 0 24px;
+    }
+
+    /* ===== SCROLL PROGRESS ===== */
+    .scroll-progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent), var(--teal));
+      width: 0%;
+      z-index: 200;
+      transition: width 0.1s linear;
     }
 
     /* ===== NAV ===== */
@@ -60,7 +75,7 @@
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
       border-bottom: 1px solid var(--rule);
-      transition: background 0.3s;
+      transition: background 0.3s, box-shadow 0.3s;
     }
     .nav .container {
       display: flex; align-items: center; justify-content: space-between;
@@ -71,13 +86,9 @@
       font-weight: 700;
       font-size: 1.15rem;
       letter-spacing: -0.02em;
-      color: var(--text);
     }
     .nav-brand span { color: var(--accent); }
-    .nav-links {
-      display: flex; gap: 32px;
-      list-style: none;
-    }
+    .nav-links { display: flex; gap: 32px; list-style: none; }
     .nav-links a {
       font-size: 0.88rem;
       font-weight: 500;
@@ -96,7 +107,6 @@
       transition: background 0.2s, transform 0.15s;
     }
     .nav-cta:hover { background: var(--accent); transform: translateY(-1px); }
-
     .menu-toggle {
       display: none;
       background: none; border: none; cursor: pointer;
@@ -117,32 +127,57 @@
 
     /* ===== HERO ===== */
     .hero {
-      padding: 160px 0 100px;
+      padding: 140px 0 80px;
       position: relative;
+      overflow: hidden;
     }
     .hero .container {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 60px;
+      gap: 48px;
       align-items: center;
     }
     .hero-label {
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
       font-size: 0.78rem;
       font-weight: 600;
       letter-spacing: 0.08em;
       text-transform: uppercase;
-      color: var(--accent);
+      color: var(--teal);
       margin-bottom: 20px;
+    }
+    .hero-label::before {
+      content: '';
+      width: 28px; height: 2px;
+      background: var(--teal);
     }
     .hero h1 {
       font-family: var(--heading);
-      font-size: clamp(2.4rem, 5vw, 3.6rem);
+      font-size: clamp(3rem, 6vw, 5rem);
       font-weight: 700;
-      line-height: 1.12;
-      letter-spacing: -0.03em;
+      line-height: 1.08;
+      letter-spacing: -0.035em;
       color: var(--text);
-      margin-bottom: 20px;
+      margin-bottom: 24px;
+    }
+    .hero h1 .hero-accent {
+      font-family: var(--serif);
+      font-style: italic;
+      color: var(--accent);
+      font-weight: 400;
+    }
+    .hero-line {
+      display: block;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: heroReveal 0.7s var(--ease-out) forwards;
+    }
+    .hero-line:nth-child(2) { animation-delay: 0.15s; }
+    .hero-line:nth-child(3) { animation-delay: 0.3s; }
+    @keyframes heroReveal {
+      to { opacity: 1; transform: translateY(0); }
     }
     .hero-sub {
       font-size: 1.1rem;
@@ -150,8 +185,14 @@
       line-height: 1.7;
       max-width: 480px;
       margin-bottom: 36px;
+      opacity: 0;
+      animation: heroReveal 0.7s var(--ease-out) 0.45s forwards;
     }
-    .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
+    .hero-actions {
+      display: flex; gap: 14px; flex-wrap: wrap;
+      opacity: 0;
+      animation: heroReveal 0.7s var(--ease-out) 0.6s forwards;
+    }
     .btn {
       display: inline-flex; align-items: center; gap: 8px;
       font-family: var(--body);
@@ -162,63 +203,59 @@
       border: none; cursor: pointer;
       transition: all 0.2s var(--ease);
     }
-    .btn-primary {
-      background: var(--accent);
-      color: #fff;
-    }
-    .btn-primary:hover { background: var(--accent-hover); transform: translateY(-1px); }
-    .btn-secondary {
-      background: transparent;
-      color: var(--text);
-      border: 1.5px solid var(--rule);
-    }
+    .btn-primary { background: var(--accent); color: #fff; }
+    .btn-primary:hover { background: var(--accent-hover); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(232,93,58,0.25); }
+    .btn-secondary { background: transparent; color: var(--text); border: 1.5px solid var(--rule); }
     .btn-secondary:hover { border-color: var(--text); }
+    .btn-teal { background: var(--teal); color: #fff; }
+    .btn-teal:hover { background: var(--teal-hover); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(42,157,143,0.25); }
 
-    /* Hero visual — stacked browser mockups */
+    /* Hero Visual — large staggered browser mockups */
     .hero-visual {
       position: relative;
-      height: 420px;
+      height: 480px;
+      opacity: 0;
+      animation: heroReveal 0.9s var(--ease-out) 0.3s forwards;
     }
     .browser-mock {
       position: absolute;
-      border-radius: 10px;
+      border-radius: 12px;
       overflow: hidden;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.12), 0 4px 16px rgba(0,0,0,0.06);
-      transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease);
+      box-shadow: 0 24px 64px rgba(0,0,0,0.14), 0 4px 20px rgba(0,0,0,0.06);
+      transition: transform 0.5s var(--ease-out), box-shadow 0.5s var(--ease-out);
     }
     .browser-mock:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 28px 70px rgba(0,0,0,0.16), 0 6px 20px rgba(0,0,0,0.08);
+      transform: translateY(-8px) !important;
+      box-shadow: 0 32px 80px rgba(0,0,0,0.18), 0 8px 24px rgba(0,0,0,0.08);
     }
     .browser-bar {
-      height: 32px;
+      height: 36px;
       background: #E8E8E4;
-      display: flex; align-items: center; padding: 0 12px; gap: 6px;
+      display: flex; align-items: center; padding: 0 14px; gap: 7px;
     }
-    .browser-dot {
-      width: 8px; height: 8px; border-radius: 50%;
-    }
+    .browser-dot { width: 9px; height: 9px; border-radius: 50%; }
     .browser-dot:nth-child(1) { background: #F87171; }
     .browser-dot:nth-child(2) { background: #FBBF24; }
     .browser-dot:nth-child(3) { background: #34D399; }
     .browser-url {
       margin-left: 10px;
-      font-size: 0.68rem;
+      font-size: 0.7rem;
       color: #888;
       background: #D9D9D4;
-      padding: 3px 10px;
-      border-radius: 4px;
+      padding: 4px 12px;
+      border-radius: 5px;
       flex: 1;
       max-width: 200px;
     }
 
     .mock-la-costa {
-      width: 380px;
-      top: 10px; left: 0;
+      width: 440px;
+      top: 0; left: -20px;
       z-index: 2;
+      transform: rotate(-2deg);
     }
     .mock-la-costa .mock-body {
-      height: 240px;
+      height: 280px;
       background: linear-gradient(135deg, #0F2B3C, #1B3A52);
       position: relative;
       display: flex; flex-direction: column;
@@ -226,15 +263,15 @@
       color: #FAF8F5;
     }
     .mock-la-costa .mock-body h3 {
-      font-family: 'Georgia', serif;
-      font-size: 1.6rem;
+      font-family: Georgia, serif;
+      font-size: 2rem;
       font-weight: 400;
       font-style: italic;
       letter-spacing: 0.04em;
       margin-bottom: 6px;
     }
     .mock-la-costa .mock-body p {
-      font-size: 0.72rem;
+      font-size: 0.75rem;
       letter-spacing: 0.15em;
       text-transform: uppercase;
       color: #C9A05F;
@@ -242,19 +279,47 @@
     .mock-la-costa .mock-body::before {
       content: '';
       position: absolute;
-      top: 16px; left: 16px; right: 16px; bottom: 16px;
+      top: 18px; left: 18px; right: 18px; bottom: 18px;
       border: 1px solid rgba(201,160,95,0.25);
-      border-radius: 2px;
       pointer-events: none;
     }
 
     .mock-apex {
-      width: 340px;
-      top: 120px; right: 0;
+      width: 400px;
+      top: 120px; right: -30px;
       z-index: 3;
+      transform: rotate(1.5deg);
+    }
+    .mock-velvet {
+      width: 280px;
+      bottom: -20px; left: 80px;
+      z-index: 4;
+      transform: rotate(1deg);
+    }
+    .mock-velvet .mock-body {
+      height: 180px;
+      background: linear-gradient(135deg, #FFFCFA, #F3E8E2);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      position: relative;
+    }
+    .mock-velvet .mock-body h3 {
+      font-family: Georgia, serif;
+      font-size: 1.15rem;
+      font-weight: 400;
+      font-style: italic;
+      color: #B76E79;
+      letter-spacing: 0.02em;
+    }
+    .mock-velvet .mock-body p {
+      font-size: 0.6rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #C9A690;
+      margin-top: 4px;
     }
     .mock-apex .mock-body {
-      height: 220px;
+      height: 260px;
       background: #0a0a0a;
       display: flex; flex-direction: column;
       align-items: center; justify-content: center;
@@ -266,64 +331,67 @@
       content: '';
       position: absolute;
       top: -40px; right: -40px;
-      width: 140px; height: 140px;
+      width: 160px; height: 160px;
       background: linear-gradient(135deg, #2979ff, #ff6d00);
       border-radius: 50%;
       opacity: 0.2;
-      filter: blur(30px);
+      filter: blur(35px);
     }
     .mock-apex .mock-body h3 {
-      font-family: 'Inter', sans-serif;
-      font-size: 1.3rem;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.5rem;
       font-weight: 900;
       text-transform: uppercase;
-      letter-spacing: 0.08em;
-      margin-bottom: 8px;
+      letter-spacing: 0.1em;
+      margin-bottom: 10px;
     }
     .mock-apex .mock-body .mock-tag {
-      font-size: 0.65rem;
+      font-size: 0.68rem;
       font-weight: 600;
       text-transform: uppercase;
       letter-spacing: 0.12em;
-      padding: 5px 14px;
+      padding: 6px 16px;
       border: 1px solid rgba(41,121,255,0.4);
       border-radius: 20px;
       color: #2979ff;
     }
 
-    /* ===== SECTION SHARED ===== */
+    /* ===== SHARED SECTION STYLES ===== */
     .section-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
       font-size: 0.75rem;
       font-weight: 600;
       letter-spacing: 0.1em;
       text-transform: uppercase;
-      color: var(--accent);
+      color: var(--teal);
       margin-bottom: 14px;
+    }
+    .section-tag::before {
+      content: '';
+      width: 20px; height: 2px;
+      background: currentColor;
     }
     .section-title {
       font-family: var(--heading);
-      font-size: clamp(1.8rem, 3.5vw, 2.6rem);
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      line-height: 1.18;
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      font-weight: 600;
+      letter-spacing: -0.025em;
+      line-height: 1.15;
       margin-bottom: 16px;
     }
     .section-desc {
       font-size: 1.05rem;
       color: var(--text-muted);
-      max-width: 520px;
+      max-width: 540px;
       line-height: 1.7;
     }
 
     /* ===== SERVICES ===== */
-    .services {
-      padding: 100px 0;
-      background: var(--bg);
-    }
-    .services-header {
-      text-align: center;
-      margin-bottom: 64px;
-    }
+    .services { padding: 100px 0; background: var(--bg); }
+    .services-header { text-align: center; margin-bottom: 64px; }
+    .services-header .section-tag::before { display: none; }
     .services-header .section-desc { margin: 0 auto; }
     .services-grid {
       display: grid;
@@ -332,26 +400,26 @@
     }
     .service-card {
       padding: 36px 30px;
-      border-radius: 10px;
+      border-radius: 12px;
       border: 1px solid var(--rule);
       background: var(--bg);
-      transition: all 0.3s var(--ease);
+      transition: all 0.35s var(--ease);
     }
     .service-card:hover {
       border-color: transparent;
-      box-shadow: 0 12px 40px rgba(0,0,0,0.07);
-      transform: translateY(-4px);
+      box-shadow: 0 16px 48px rgba(0,0,0,0.07);
+      transform: translateY(-6px);
     }
     .service-icon {
-      width: 44px; height: 44px;
-      border-radius: 10px;
+      width: 48px; height: 48px;
+      border-radius: 12px;
       display: flex; align-items: center; justify-content: center;
       margin-bottom: 22px;
       font-size: 1.2rem;
     }
-    .service-icon.design { background: #FEE2E2; color: #DC2626; }
-    .service-icon.dev { background: #DBEAFE; color: #2563EB; }
-    .service-icon.seo { background: #D1FAE5; color: #059669; }
+    .service-icon.design { background: #FEE2E2; color: #E85D3A; }
+    .service-icon.dev { background: #D1F5EF; color: #2A9D8F; }
+    .service-icon.seo { background: #DBEAFE; color: #2563EB; }
     .service-card h3 {
       font-family: var(--heading);
       font-size: 1.15rem;
@@ -365,10 +433,10 @@
       line-height: 1.65;
     }
 
-    /* ===== WORK / PORTFOLIO ===== */
+    /* ===== WORK ===== */
     .work {
       padding: 100px 0 120px;
-      background: var(--bg-dark);
+      background: linear-gradient(165deg, var(--bg-dark) 0%, var(--bg-dark-alt) 100%);
       color: var(--text-inv);
     }
     .work .section-desc { color: var(--text-inv-muted); }
@@ -378,27 +446,38 @@
       align-items: flex-end;
       margin-bottom: 56px;
     }
+    .work .section-tag { color: var(--accent); }
+    .work .section-tag::before { background: var(--accent); }
     .work-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 28px;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 32px;
+      align-items: start;
+    }
+    .work-grid .work-card:nth-child(2) {
+      margin-top: 60px;
+    }
+    .work-card-full {
+      grid-column: 1 / -1;
+      max-width: 680px;
+      margin: 0 auto;
     }
     .work-card {
-      border-radius: 12px;
+      border-radius: 14px;
       overflow: hidden;
-      background: var(--bg-dark-alt);
+      background: rgba(255,255,255,0.04);
       border: 1px solid var(--rule-inv);
-      transition: all 0.35s var(--ease);
+      transition: all 0.4s var(--ease);
       position: relative;
     }
     .work-card:hover {
       transform: translateY(-6px);
-      border-color: rgba(250,250,248,0.18);
-      box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+      border-color: rgba(250,250,248,0.15);
+      box-shadow: 0 24px 60px rgba(0,0,0,0.3);
     }
     .work-thumb {
       width: 100%;
-      aspect-ratio: 4/3;
+      aspect-ratio: 16/10;
       overflow: hidden;
       position: relative;
     }
@@ -409,11 +488,38 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      transition: transform 0.4s var(--ease);
+      transition: transform 0.5s var(--ease-out);
     }
-    .work-card:hover .work-thumb-inner { transform: scale(1.03); }
+    .work-card:hover .work-thumb-inner { transform: scale(1.04); }
+    .work-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(13,17,23,0.7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.35s var(--ease);
+      z-index: 2;
+    }
+    .work-card:hover .work-overlay { opacity: 1; }
+    .work-overlay span {
+      font-family: var(--heading);
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #fff;
+      padding: 12px 24px;
+      border: 1.5px solid rgba(255,255,255,0.5);
+      border-radius: var(--radius);
+      letter-spacing: 0.02em;
+      transition: all 0.3s;
+    }
+    .work-card:hover .work-overlay span {
+      border-color: var(--accent);
+      background: rgba(232,93,58,0.15);
+    }
 
-    /* La Costa preview thumb */
+    /* Thumbs */
     .thumb-lacosta {
       background: linear-gradient(155deg, #0F2B3C 0%, #1B3A52 50%, #0F2B3C 100%);
       position: relative;
@@ -421,27 +527,26 @@
     .thumb-lacosta::after {
       content: '';
       position: absolute;
-      inset: 20px;
+      inset: 22px;
       border: 1px solid rgba(201,160,95,0.2);
       pointer-events: none;
     }
     .thumb-lacosta h4 {
-      font-family: 'Georgia', serif;
-      font-size: 1.7rem;
+      font-family: Georgia, serif;
+      font-size: 2rem;
       font-weight: 400;
       font-style: italic;
       color: #FAF8F5;
       letter-spacing: 0.03em;
     }
     .thumb-lacosta span {
-      font-size: 0.68rem;
+      font-size: 0.72rem;
       letter-spacing: 0.18em;
       text-transform: uppercase;
       color: #C9A05F;
       margin-top: 6px;
     }
 
-    /* Apex preview thumb */
     .thumb-apex {
       background: #0a0a0a;
       position: relative;
@@ -464,8 +569,8 @@
       pointer-events: none;
     }
     .thumb-apex h4 {
-      font-family: 'Inter', sans-serif;
-      font-size: 1.3rem;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.5rem;
       font-weight: 900;
       text-transform: uppercase;
       letter-spacing: 0.1em;
@@ -474,51 +579,47 @@
     .thumb-apex span {
       display: inline-block;
       margin-top: 10px;
-      font-size: 0.6rem;
+      font-size: 0.64rem;
       font-weight: 600;
       letter-spacing: 0.14em;
       text-transform: uppercase;
-      padding: 4px 14px;
+      padding: 5px 16px;
       border: 1px solid rgba(41,121,255,0.4);
       border-radius: 20px;
       color: #2979ff;
     }
 
-    /* Salon coming-soon thumb */
-    .thumb-salon {
-      background: linear-gradient(145deg, #F5E6D8, #E8D5C4);
+    .thumb-velvet {
+      background: linear-gradient(155deg, #FFFCFA 0%, #F3E8E2 50%, #FFFCFA 100%);
       position: relative;
     }
-    .thumb-salon h4 {
-      font-family: 'Georgia', serif;
-      font-size: 1.4rem;
+    .thumb-velvet::after {
+      content: '';
+      position: absolute;
+      top: 50%; left: 50%;
+      width: 120px; height: 120px;
+      transform: translate(-50%, -50%);
+      border: 1px solid rgba(183,110,121,0.2);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+    .thumb-velvet h4 {
+      font-family: Georgia, serif;
+      font-size: 1.6rem;
       font-weight: 400;
-      color: #5C4A3A;
+      font-style: italic;
+      color: #B76E79;
       letter-spacing: 0.02em;
     }
-    .thumb-salon span {
-      font-size: 0.68rem;
-      font-weight: 500;
-      letter-spacing: 0.08em;
+    .thumb-velvet span {
+      font-size: 0.64rem;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
-      color: #9B8574;
-      margin-top: 8px;
-    }
-    .coming-soon-badge {
-      position: absolute;
-      top: 16px;
-      right: 16px;
-      font-size: 0.65rem;
-      font-weight: 600;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      padding: 5px 12px;
-      border-radius: 20px;
-      background: rgba(92, 74, 58, 0.12);
-      color: #5C4A3A;
+      color: #C9A690;
+      margin-top: 6px;
     }
 
-    .work-info { padding: 26px 26px 28px; }
+    .work-info { padding: 28px 28px 30px; }
     .work-type {
       font-size: 0.7rem;
       font-weight: 600;
@@ -529,144 +630,232 @@
     }
     .work-info h3 {
       font-family: var(--heading);
-      font-size: 1.2rem;
+      font-size: 1.25rem;
       font-weight: 600;
       letter-spacing: -0.01em;
       margin-bottom: 8px;
       color: var(--text-inv);
     }
     .work-info p {
-      font-size: 0.88rem;
+      font-size: 0.9rem;
       color: var(--text-inv-muted);
-      line-height: 1.6;
-      margin-bottom: 18px;
+      line-height: 1.65;
+      margin-bottom: 16px;
     }
-    .work-tags {
-      display: flex; flex-wrap: wrap; gap: 6px;
+    .work-metrics {
+      display: flex; flex-wrap: wrap; gap: 16px;
+      margin-bottom: 16px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--rule-inv);
     }
+    .work-metric {
+      display: flex; align-items: center; gap: 6px;
+      font-size: 0.78rem;
+      color: var(--teal);
+      font-weight: 500;
+    }
+    .work-metric svg { width: 14px; height: 14px; flex-shrink: 0; }
+    .work-tags { display: flex; flex-wrap: wrap; gap: 6px; }
     .work-tag {
       font-size: 0.7rem;
       font-weight: 500;
-      padding: 4px 11px;
-      border-radius: 4px;
+      padding: 4px 12px;
+      border-radius: 5px;
       background: rgba(250,250,248,0.06);
       color: var(--text-inv-muted);
     }
-    .work-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 0.82rem;
-      font-weight: 600;
-      color: var(--accent);
-      margin-top: 16px;
-      transition: gap 0.2s;
-    }
-    .work-link:hover { gap: 10px; }
-    .work-link svg { width: 14px; height: 14px; }
 
-    /* ===== PROCESS ===== */
-    .process {
-      padding: 100px 0;
+    /* ===== MIAMI SECTION ===== */
+    .miami {
+      padding: 80px 0;
       background: var(--bg-alt);
-    }
-    .process-header {
-      text-align: center;
-      margin-bottom: 64px;
-    }
-    .process-header .section-desc { margin: 0 auto; }
-    .process-steps {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 20px;
       position: relative;
+      overflow: hidden;
     }
-    .process-step {
-      text-align: center;
-      padding: 30px 20px;
-    }
-    .step-num {
-      display: inline-flex;
-      align-items: center; justify-content: center;
-      width: 48px; height: 48px;
-      border-radius: 50%;
-      background: var(--text);
-      color: var(--text-inv);
+    .miami::before {
+      content: 'MIAMI';
+      position: absolute;
+      right: -40px;
+      top: 50%;
+      transform: translateY(-50%);
       font-family: var(--heading);
-      font-size: 1.1rem;
+      font-size: clamp(6rem, 14vw, 12rem);
       font-weight: 700;
-      margin-bottom: 20px;
+      color: var(--text);
+      opacity: 0.03;
+      letter-spacing: -0.04em;
+      pointer-events: none;
     }
-    .process-step h3 {
-      font-family: var(--heading);
-      font-size: 1.05rem;
-      font-weight: 600;
-      margin-bottom: 8px;
+    .miami .container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
     }
-    .process-step p {
-      font-size: 0.88rem;
+    .miami-content .section-title {
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+    }
+    .miami-content .section-desc { margin-bottom: 24px; }
+    .miami-points {
+      list-style: none;
+      display: flex; flex-direction: column; gap: 14px;
+    }
+    .miami-points li {
+      display: flex; align-items: flex-start; gap: 12px;
+      font-size: 0.95rem;
       color: var(--text-muted);
       line-height: 1.6;
     }
+    .miami-points li svg {
+      width: 20px; height: 20px;
+      color: var(--teal);
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .miami-visual {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .miami-stat-card {
+      padding: 28px 24px;
+      border-radius: 12px;
+      background: var(--bg);
+      border: 1px solid var(--rule);
+    }
+    .miami-stat-card .stat-val {
+      font-family: var(--heading);
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: -0.03em;
+      margin-bottom: 4px;
+    }
+    .miami-stat-card .stat-val.accent { color: var(--accent); }
+    .miami-stat-card .stat-val.teal { color: var(--teal); }
+    .miami-stat-card .stat-desc {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    /* ===== PROCESS ===== */
+    .process { padding: 100px 0; background: var(--bg); }
+    .process-header { text-align: center; margin-bottom: 72px; }
+    .process-header .section-tag::before { display: none; }
+    .process-header .section-desc { margin: 0 auto; }
+    .process-timeline {
+      display: flex; flex-direction: column; gap: 0;
+      position: relative;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .process-timeline::before {
+      content: '';
+      position: absolute;
+      left: 32px;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--accent), var(--teal));
+      opacity: 0.2;
+    }
+    .timeline-item {
+      display: flex;
+      gap: 32px;
+      padding: 28px 0;
+      position: relative;
+    }
+    .timeline-num {
+      width: 64px; height: 64px;
+      border-radius: 50%;
+      background: var(--bg-alt);
+      border: 2px solid var(--rule);
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--heading);
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--accent);
+      flex-shrink: 0;
+      z-index: 1;
+      transition: all 0.3s;
+    }
+    .timeline-item:hover .timeline-num {
+      background: var(--accent);
+      color: #fff;
+      border-color: var(--accent);
+    }
+    .timeline-body { padding-top: 10px; }
+    .timeline-body h3 {
+      font-family: var(--heading);
+      font-size: 1.15rem;
+      font-weight: 600;
+      margin-bottom: 6px;
+      letter-spacing: -0.01em;
+    }
+    .timeline-body p {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      line-height: 1.65;
+      max-width: 440px;
+    }
+    .timeline-body .timeline-detail {
+      font-size: 0.82rem;
+      font-style: italic;
+      color: var(--teal);
+      margin-top: 6px;
+    }
+
+    /* ===== TESTIMONIAL ===== */
+    .testimonial {
+      padding: 80px 0;
+      background: var(--bg-alt);
+    }
+    .testimonial .container {
+      max-width: 740px;
+      text-align: center;
+    }
+    .testimonial-quote {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+      color: var(--text);
+      line-height: 1.6;
+      margin-bottom: 28px;
+      position: relative;
+    }
+    .testimonial-quote::before {
+      content: '"';
+      font-family: Georgia, serif;
+      font-size: 4rem;
+      color: var(--accent);
+      opacity: 0.3;
+      position: absolute;
+      top: -20px;
+      left: 50%;
+      transform: translateX(-50%);
+      line-height: 1;
+    }
+    .testimonial-author {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+    .testimonial-role {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
 
     /* ===== ABOUT ===== */
-    .about {
-      padding: 100px 0;
-      background: var(--bg);
-    }
+    .about { padding: 100px 0; background: var(--bg); }
     .about .container {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 80px;
       align-items: center;
     }
-    .about-visual {
-      background: var(--bg-alt);
-      border-radius: 12px;
-      aspect-ratio: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      overflow: hidden;
-    }
-    .about-visual-text {
-      font-family: var(--heading);
-      font-size: 4.5rem;
-      font-weight: 700;
-      color: var(--text);
-      opacity: 0.06;
-      letter-spacing: -0.04em;
-      line-height: 1;
-    }
-    .about-stats {
-      position: absolute;
-      bottom: 0; left: 0; right: 0;
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      background: var(--text);
-      padding: 24px 20px;
-    }
-    .stat {
-      text-align: center;
-    }
-    .stat-num {
-      font-family: var(--heading);
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: var(--text-inv);
-    }
-    .stat-label {
-      font-size: 0.72rem;
-      color: var(--text-inv-muted);
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      margin-top: 2px;
-    }
-    .about-content .section-desc {
-      margin-bottom: 24px;
-    }
+    .about-content .section-desc { margin-bottom: 20px; }
     .about-detail {
       font-size: 0.95rem;
       color: var(--text-muted);
@@ -674,45 +863,190 @@
       margin-bottom: 32px;
     }
     .about-tools {
-      display: flex; flex-wrap: wrap; gap: 8px;
+      display: flex; flex-wrap: wrap; gap: 10px;
     }
     .tool-tag {
-      font-size: 0.78rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.8rem;
       font-weight: 500;
-      padding: 6px 14px;
+      padding: 8px 16px;
       border-radius: var(--radius);
       background: var(--bg-alt);
       color: var(--text);
+      border: 1px solid var(--rule);
+      transition: all 0.2s;
+    }
+    .tool-tag:hover {
+      border-color: var(--teal);
+      color: var(--teal);
+    }
+    .tool-tag svg { width: 14px; height: 14px; }
+    .about-visual {
+      background: linear-gradient(135deg, var(--bg-dark) 0%, var(--bg-dark-alt) 100%);
+      border-radius: 16px;
+      aspect-ratio: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      padding: 40px;
+    }
+    .about-visual-tagline {
+      font-family: var(--heading);
+      font-size: clamp(1.4rem, 2.5vw, 1.8rem);
+      font-weight: 300;
+      color: var(--text-inv);
+      text-align: center;
+      line-height: 1.4;
+      letter-spacing: -0.02em;
+    }
+    .about-visual-tagline strong {
+      font-weight: 700;
+      color: var(--accent);
+    }
+    .about-visual-tagline em {
+      font-family: var(--serif);
+      color: var(--teal);
+    }
+    .about-visual::before {
+      content: '';
+      position: absolute;
+      width: 200px; height: 200px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(232,93,58,0.12), transparent 70%);
+      top: -40px; right: -40px;
+      pointer-events: none;
+    }
+    .about-visual::after {
+      content: '';
+      position: absolute;
+      width: 200px; height: 200px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(42,157,143,0.1), transparent 70%);
+      bottom: -40px; left: -40px;
+      pointer-events: none;
+    }
+    .about-badges {
+      display: flex; gap: 20px;
+      margin-top: 32px;
+    }
+    .about-badge {
+      text-align: center;
+      padding: 16px 20px;
+      border-radius: 10px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--rule-inv);
+    }
+    .about-badge .badge-val {
+      font-family: var(--heading);
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text-inv);
+      margin-bottom: 2px;
+    }
+    .about-badge .badge-label {
+      font-size: 0.68rem;
+      color: var(--text-inv-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
     }
 
-    /* ===== CTA ===== */
+    /* ===== CTA / CONTACT ===== */
     .cta-section {
       padding: 100px 0;
-      background: var(--bg-dark);
-      text-align: center;
+      background: linear-gradient(165deg, var(--bg-dark) 0%, var(--bg-dark-alt) 100%);
     }
-    .cta-section .section-tag { color: var(--accent); }
-    .cta-section .section-title { color: var(--text-inv); }
-    .cta-section .section-desc {
+    .cta-section .container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: start;
+    }
+    .cta-text .section-tag { color: var(--accent); }
+    .cta-text .section-tag::before { background: var(--accent); }
+    .cta-text .section-title { color: var(--text-inv); }
+    .cta-text .section-desc {
       color: var(--text-inv-muted);
-      margin: 0 auto 40px;
+      margin-bottom: 32px;
     }
-    .cta-actions { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
-    .cta-email {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 0.9rem;
+    .cta-email-link {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-size: 0.95rem;
       color: var(--text-inv-muted);
-      margin-top: 24px;
     }
-    .cta-email a {
+    .cta-email-link a {
       color: var(--text-inv);
       font-weight: 500;
       border-bottom: 1px solid var(--rule-inv);
-      transition: border-color 0.2s;
+      transition: all 0.2s;
     }
-    .cta-email a:hover { border-color: var(--accent); color: var(--accent); }
+    .cta-email-link a:hover { color: var(--accent); border-color: var(--accent); }
+
+    .contact-form {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--rule-inv);
+      border-radius: 16px;
+      padding: 36px;
+    }
+    .form-group { margin-bottom: 20px; }
+    .form-group label {
+      display: block;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--text-inv);
+      margin-bottom: 8px;
+      letter-spacing: 0.02em;
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 12px 16px;
+      border-radius: var(--radius);
+      border: 1px solid var(--rule-inv);
+      background: rgba(255,255,255,0.04);
+      color: var(--text-inv);
+      font-family: var(--body);
+      font-size: 0.9rem;
+      transition: border-color 0.2s;
+      outline: none;
+    }
+    .form-group input::placeholder,
+    .form-group textarea::placeholder {
+      color: var(--text-inv-muted);
+      opacity: 0.6;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--accent);
+    }
+    .form-group select { cursor: pointer; }
+    .form-group select option { background: var(--bg-dark); color: var(--text-inv); }
+    .form-group textarea { resize: vertical; min-height: 100px; }
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .form-submit {
+      width: 100%;
+      padding: 14px;
+      border: none;
+      border-radius: var(--radius);
+      background: var(--accent);
+      color: #fff;
+      font-family: var(--body);
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .form-submit:hover { background: var(--accent-hover); transform: translateY(-1px); }
 
     /* ===== FOOTER ===== */
     .footer {
@@ -729,9 +1063,7 @@
       font-size: 0.82rem;
       color: var(--text-inv-muted);
     }
-    .footer-links {
-      display: flex; gap: 24px; list-style: none;
-    }
+    .footer-links { display: flex; gap: 24px; list-style: none; }
     .footer-links a {
       font-size: 0.82rem;
       color: var(--text-inv-muted);
@@ -739,91 +1071,105 @@
     }
     .footer-links a:hover { color: var(--text-inv); }
 
-    /* ===== RESPONSIVE ===== */
-    @media (max-width: 960px) {
-      .hero .container { grid-template-columns: 1fr; gap: 40px; }
-      .hero-visual { height: 320px; margin: 0 auto; max-width: 500px; }
-      .mock-la-costa { width: 300px; }
-      .mock-apex { width: 270px; }
-      .work-grid { grid-template-columns: repeat(2, 1fr); }
-      .work-grid .work-card:last-child {
-        grid-column: 1 / -1;
-        max-width: 400px;
-        justify-self: center;
-      }
-      .services-grid { grid-template-columns: repeat(2, 1fr); }
-      .services-grid .service-card:last-child {
-        grid-column: 1 / -1;
-        max-width: 400px;
-        justify-self: center;
-      }
-      .process-steps { grid-template-columns: repeat(2, 1fr); }
-      .about .container { grid-template-columns: 1fr; gap: 40px; }
-      .about-visual { max-height: 360px; }
+    /* ===== MOBILE MENU ===== */
+    .mobile-menu {
+      position: fixed;
+      top: 68px; left: 0; right: 0; bottom: 0;
+      background: rgba(250,250,248,0.98);
+      backdrop-filter: blur(12px);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: 28px;
+      transform: translateY(-100%);
+      opacity: 0;
+      transition: all 0.35s var(--ease);
+      z-index: 99;
+      pointer-events: none;
     }
-    @media (max-width: 680px) {
-      .nav-links, .nav-cta-desktop { display: none; }
-      .menu-toggle { display: block; }
-      .mobile-menu {
-        position: fixed;
-        top: 68px; left: 0; right: 0; bottom: 0;
-        background: rgba(250,250,248,0.98);
-        backdrop-filter: blur(12px);
-        display: flex; flex-direction: column;
-        align-items: center; justify-content: center;
-        gap: 28px;
-        transform: translateY(-100%);
-        opacity: 0;
-        transition: all 0.35s var(--ease);
-        z-index: 99;
-        pointer-events: none;
-      }
-      .mobile-menu.open {
-        transform: translateY(0);
-        opacity: 1;
-        pointer-events: auto;
-      }
-      .mobile-menu a {
-        font-family: var(--heading);
-        font-size: 1.4rem;
-        font-weight: 600;
-        color: var(--text);
-        letter-spacing: -0.01em;
-      }
-      .hero { padding: 130px 0 60px; }
-      .hero h1 { font-size: 2.2rem; }
-      .hero-visual { height: 280px; }
-      .mock-la-costa { width: 240px; }
-      .mock-apex { width: 220px; top: 100px; }
-      .work-grid { grid-template-columns: 1fr; }
-      .work-grid .work-card:last-child { max-width: none; }
-      .services-grid { grid-template-columns: 1fr; }
-      .services-grid .service-card:last-child { max-width: none; }
-      .process-steps { grid-template-columns: 1fr; }
-      .work-header { flex-direction: column; align-items: flex-start; gap: 20px; }
-      .footer .container { flex-direction: column; gap: 12px; text-align: center; }
-      .about-stats { padding: 18px 12px; }
-      .stat-num { font-size: 1.2rem; }
+    .mobile-menu.open {
+      transform: translateY(0);
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .mobile-menu a {
+      font-family: var(--heading);
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: var(--text);
     }
 
     /* ===== ANIMATIONS ===== */
     .fade-up {
       opacity: 0;
-      transform: translateY(28px);
-      transition: opacity 0.6s var(--ease), transform 0.6s var(--ease);
+      transform: translateY(30px);
+      transition: opacity 0.65s var(--ease-out), transform 0.65s var(--ease-out);
     }
-    .fade-up.visible {
-      opacity: 1;
-      transform: translateY(0);
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+    .slide-left {
+      opacity: 0;
+      transform: translateX(-40px);
+      transition: opacity 0.65s var(--ease-out), transform 0.65s var(--ease-out);
+    }
+    .slide-left.visible { opacity: 1; transform: translateX(0); }
+
+    .slide-right {
+      opacity: 0;
+      transform: translateX(40px);
+      transition: opacity 0.65s var(--ease-out), transform 0.65s var(--ease-out);
+    }
+    .slide-right.visible { opacity: 1; transform: translateX(0); }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 960px) {
+      .hero .container { grid-template-columns: 1fr; gap: 40px; }
+      .hero-visual { height: 360px; margin: 0 auto; max-width: 500px; }
+      .mock-la-costa { width: 320px; }
+      .mock-apex { width: 290px; }
+      .mock-velvet { width: 220px; bottom: -10px; left: 50px; }
+      .work-card-full { max-width: 100%; }
+      .work-grid { grid-template-columns: 1fr; }
+      .work-grid .work-card:nth-child(2) { margin-top: 0; }
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+      .services-grid .service-card:last-child {
+        grid-column: 1 / -1; max-width: 400px; justify-self: center;
+      }
+      .miami .container { grid-template-columns: 1fr; gap: 40px; }
+      .about .container { grid-template-columns: 1fr; gap: 40px; }
+      .about-visual { max-height: 380px; }
+      .cta-section .container { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 680px) {
+      .nav-links, .nav-cta-desktop { display: none; }
+      .menu-toggle { display: block; }
+      .hero { padding: 120px 0 50px; }
+      .hero h1 { font-size: 2.4rem; }
+      .hero-visual { height: 300px; }
+      .mock-la-costa { width: 260px; transform: rotate(-1deg); }
+      .mock-apex { width: 240px; top: 110px; transform: rotate(1deg); }
+      .mock-velvet { width: 180px; bottom: 0; left: 30px; }
+      .services-grid { grid-template-columns: 1fr; }
+      .services-grid .service-card:last-child { max-width: none; }
+      .work-header { flex-direction: column; align-items: flex-start; gap: 20px; }
+      .miami-visual { grid-template-columns: 1fr 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+      .footer .container { flex-direction: column; gap: 12px; text-align: center; }
+      .about-badges { flex-direction: row; gap: 12px; }
+      .about-badge { padding: 12px 16px; }
+      .process-timeline::before { left: 28px; }
+      .timeline-num { width: 56px; height: 56px; font-size: 1rem; }
     }
   </style>
 </head>
 <body>
 
+  <!-- Scroll Progress -->
+  <div class="scroll-progress" id="scrollProgress"></div>
+
   <!-- Nav -->
   <nav class="nav">
     <div class="container">
-      <a href="#" class="nav-brand">basecamp<span>.</span>digital</a>
+      <a href="#" class="nav-brand">doorstep<span>.</span>digital</a>
       <ul class="nav-links">
         <li><a href="#services">Services</a></li>
         <li><a href="#work">Work</a></li>
@@ -850,20 +1196,22 @@
   <section class="hero">
     <div class="container">
       <div class="hero-text">
-        <span class="hero-label">Web Studio for Local Businesses</span>
-        <h1>Websites that bring locals through your door.</h1>
+        <span class="hero-label">Miami Web Studio</span>
+        <h1>
+          <span class="hero-line">Websites that bring</span>
+          <span class="hero-line"><span class="hero-accent">locals</span> through</span>
+          <span class="hero-line">your door.</span>
+        </h1>
         <p class="hero-sub">We build clean, fast websites for restaurants, gyms, salons, and small businesses — designed to turn visitors into customers.</p>
         <div class="hero-actions">
-          <a href="#contact" class="btn btn-primary">Start a Project</a>
-          <a href="#work" class="btn btn-secondary">See My Work</a>
+          <a href="#contact" class="btn btn-primary">Start a Project →</a>
+          <a href="#work" class="btn btn-secondary">See Our Work</a>
         </div>
       </div>
-      <div class="hero-visual">
+      <div class="hero-visual" id="heroVisual">
         <div class="browser-mock mock-la-costa">
           <div class="browser-bar">
-            <span class="browser-dot"></span>
-            <span class="browser-dot"></span>
-            <span class="browser-dot"></span>
+            <span class="browser-dot"></span><span class="browser-dot"></span><span class="browser-dot"></span>
             <span class="browser-url">lacosta-miami.com</span>
           </div>
           <div class="mock-body">
@@ -873,14 +1221,22 @@
         </div>
         <div class="browser-mock mock-apex">
           <div class="browser-bar">
-            <span class="browser-dot"></span>
-            <span class="browser-dot"></span>
-            <span class="browser-dot"></span>
+            <span class="browser-dot"></span><span class="browser-dot"></span><span class="browser-dot"></span>
             <span class="browser-url">apexfitness.com</span>
           </div>
           <div class="mock-body">
             <h3>APEX FITNESS</h3>
             <span class="mock-tag">Transform Your Body</span>
+          </div>
+        </div>
+        <div class="browser-mock mock-velvet">
+          <div class="browser-bar">
+            <span class="browser-dot"></span><span class="browser-dot"></span><span class="browser-dot"></span>
+            <span class="browser-url">velvetnailbar.com</span>
+          </div>
+          <div class="mock-body">
+            <h3>Velvet Nail Bar</h3>
+            <p>Premium Nail Studio</p>
           </div>
         </div>
       </div>
@@ -892,25 +1248,26 @@
     <div class="container">
       <div class="services-header fade-up">
         <span class="section-tag">What We Do</span>
-        <h2 class="section-title">Built for businesses<br>that serve people in person.</h2>
+        <h2 class="section-title">Built for businesses that<br>serve people <em style="font-family: var(--serif); font-weight: 400; color: var(--accent);">in person.</em></h2>
         <p class="section-desc">Your space has a vibe. Your website should too. We build sites that capture the feel of your business and make it easy for new customers to find you, book you, or walk in.</p>
+        <p class="section-desc">Perfect for restaurants, gyms, salons, and service businesses that depend on locals finding and trusting them online.</p>
       </div>
       <div class="services-grid">
-        <div class="service-card fade-up">
+        <div class="service-card fade-up" style="transition-delay: 0ms;">
           <div class="service-icon design">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/></svg>
           </div>
           <h3>Design & Branding</h3>
           <p>Custom layouts built from scratch around your brand's personality — no templates, no cookie-cutter look. Every detail is intentional.</p>
         </div>
-        <div class="service-card fade-up">
+        <div class="service-card fade-up" style="transition-delay: 120ms;">
           <div class="service-icon dev">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
           </div>
           <h3>Development</h3>
           <p>Fast, responsive, and built to work on every screen. Clean code, quick load times, and zero bloat. Your site just works.</p>
         </div>
-        <div class="service-card fade-up">
+        <div class="service-card fade-up" style="transition-delay: 240ms;">
           <div class="service-icon seo">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
           </div>
@@ -927,82 +1284,171 @@
       <div class="work-header fade-up">
         <div>
           <span class="section-tag">Selected Work</span>
-          <h2 class="section-title">Real sites for real businesses.</h2>
-          <p class="section-desc">Each project is crafted to match the energy of the business — from refined coastal dining to high-intensity fitness.</p>
+          <h2 class="section-title" style="color: var(--text-inv);">Real sites. Real businesses.</h2>
+          <p class="section-desc">Each project is crafted to match the energy of the business — from refined coastal dining to high-intensity fitness to elegant beauty.</p>
         </div>
       </div>
       <div class="work-grid">
 
         <!-- La Costa -->
-        <div class="work-card fade-up">
+        <a href="la-costa-restaurant/index.html" class="work-card slide-left">
           <div class="work-thumb">
             <div class="work-thumb-inner thumb-lacosta">
               <h4>La Costa</h4>
               <span>Coastal Dining &bull; Miami</span>
             </div>
+            <div class="work-overlay"><span>View Project →</span></div>
           </div>
           <div class="work-info">
             <span class="work-type">Restaurant</span>
             <h3>La Costa — Coastal Dining</h3>
             <p>An elegant, refined site for an upscale seafood restaurant. Full menu system, reservations, gallery, and Google Maps integration.</p>
+            <p>Built to feel like a quiet waterfront evening and make it effortless to browse the menu and book a table.</p>
+            <div class="work-metrics">
+              <span class="work-metric">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+                Mobile-first
+              </span>
+              <span class="work-metric">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                &lt;2s load
+              </span>
+              <span class="work-metric">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                SEO-optimized
+              </span>
+            </div>
             <div class="work-tags">
               <span class="work-tag">Responsive</span>
-              <span class="work-tag">SEO</span>
               <span class="work-tag">Menu System</span>
               <span class="work-tag">Reservations</span>
+              <span class="work-tag">Gallery</span>
             </div>
-            <a href="la-costa-restaurant/index.html" class="work-link">
-              View Project <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-            </a>
           </div>
-        </div>
+        </a>
 
         <!-- Apex Fitness -->
-        <div class="work-card fade-up">
+        <a href="apex-fitness/index.html" class="work-card slide-right">
           <div class="work-thumb">
             <div class="work-thumb-inner thumb-apex">
               <h4>APEX FITNESS</h4>
               <span>Transform Your Body</span>
             </div>
+            <div class="work-overlay"><span>View Project →</span></div>
           </div>
           <div class="work-info">
             <span class="work-type">Gym / Fitness</span>
             <h3>Apex Fitness</h3>
             <p>A bold, high-energy site for a premium fitness center. Class schedules, trainer profiles, membership tiers, and strong CTAs throughout.</p>
+            <p>Designed to push visitors toward trials and memberships with clear next steps on every section.</p>
+            <div class="work-metrics">
+              <span class="work-metric">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+                Dark theme
+              </span>
+              <span class="work-metric">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                High contrast
+              </span>
+              <span class="work-metric">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                Conversion-focused
+              </span>
+            </div>
             <div class="work-tags">
-              <span class="work-tag">Dark Theme</span>
-              <span class="work-tag">Responsive</span>
               <span class="work-tag">Schedules</span>
+              <span class="work-tag">Memberships</span>
+              <span class="work-tag">Trainers</span>
               <span class="work-tag">CTAs</span>
             </div>
-            <a href="apex-fitness/index.html" class="work-link">
-              View Project <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-            </a>
           </div>
-        </div>
+        </a>
 
-        <!-- Salon — Coming Soon -->
-        <div class="work-card fade-up">
+        <!-- Velvet Nail Bar -->
+        <a href="velvet-nail-bar/index.html" class="work-card work-card-full fade-up">
           <div class="work-thumb">
-            <div class="work-thumb-inner thumb-salon">
-              <span class="coming-soon-badge">Coming Soon</span>
-              <h4>Luxe Salon</h4>
-              <span>Beauty &bull; Wellness</span>
+            <div class="work-thumb-inner thumb-velvet">
+              <h4>Velvet Nail Bar</h4>
+              <span>Premium Nail Studio &bull; Miami</span>
             </div>
+            <div class="work-overlay"><span>View Project →</span></div>
           </div>
           <div class="work-info">
-            <span class="work-type">Salon / Spa</span>
-            <h3>Salon Site — In Progress</h3>
-            <p>A warm, elegant site for a local salon and spa. Online booking, service menus, stylist profiles, and before/after galleries.</p>
+            <span class="work-type">Salon / Beauty</span>
+            <h3>Velvet Nail Bar</h3>
+            <p>An elegant, editorial-style site for a premium nail salon. Soft blush and rose gold palette with service pricing, gallery, reviews, and online booking integration.</p>
+            <p>Crafted to mirror the studios calm, high-end vibe so new clients know exactly what to expect before they walk in.</p>
+            <div class="work-metrics">
+              <span class="work-metric">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+                Light editorial
+              </span>
+              <span class="work-metric">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                Elegant typography
+              </span>
+              <span class="work-metric">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+                Gallery-driven
+              </span>
+            </div>
             <div class="work-tags">
-              <span class="work-tag">Booking</span>
               <span class="work-tag">Services</span>
+              <span class="work-tag">Pricing</span>
+              <span class="work-tag">Booking</span>
               <span class="work-tag">Gallery</span>
-              <span class="work-tag">Warm Palette</span>
+              <span class="work-tag">Reviews</span>
             </div>
           </div>
-        </div>
+        </a>
 
+      </div>
+    </div>
+  </section>
+
+  <!-- Built for Miami -->
+  <section class="miami">
+    <div class="container">
+      <div class="miami-content slide-left">
+        <span class="section-tag">Built for Miami</span>
+        <h2 class="section-title">We know this city.<br>We know its businesses.</h2>
+        <p class="section-desc">Miami moves fast. Your online presence should too. We specialize in local businesses because we understand what it takes to stand out in this market.</p>
+        <ul class="miami-points">
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg>
+            Local SEO that puts you on the map — literally
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg>
+            Bilingual-ready design for Miami's diverse market
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg>
+            Optimized for mobile — where 70% of local searches happen
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg>
+            Built to convert visitors into walk-ins, bookings, and calls
+          </li>
+        </ul>
+      </div>
+      <div class="miami-visual slide-right">
+        <div class="miami-stat-card fade-up" style="transition-delay: 0ms;">
+          <div class="stat-val accent">70%</div>
+          <div class="stat-desc">of consumers visit a store based on info found online</div>
+        </div>
+        <div class="miami-stat-card fade-up" style="transition-delay: 120ms;">
+          <div class="stat-val teal">46%</div>
+          <div class="stat-desc">of all Google searches are looking for local info</div>
+        </div>
+        <div class="miami-stat-card fade-up" style="transition-delay: 240ms;">
+          <div class="stat-val accent">88%</div>
+          <div class="stat-desc">of local mobile searches result in a call or visit within 24h</div>
+        </div>
+        <div class="miami-stat-card fade-up" style="transition-delay: 360ms;">
+          <div class="stat-val teal">3s</div>
+          <div class="stat-desc">is all you have before a visitor bounces from a slow site</div>
+        </div>
       </div>
     </div>
   </section>
@@ -1012,91 +1458,160 @@
     <div class="container">
       <div class="process-header fade-up">
         <span class="section-tag">How It Works</span>
-        <h2 class="section-title">From first call to launch day.</h2>
+        <h2 class="section-title">From first call to <em style="font-family: var(--serif); font-weight: 400; color: var(--accent);">launch day.</em></h2>
         <p class="section-desc">A straightforward process that keeps you in the loop without drowning you in decisions.</p>
       </div>
-      <div class="process-steps">
-        <div class="process-step fade-up">
-          <div class="step-num">1</div>
-          <h3>Discovery</h3>
-          <p>We talk about your business, your customers, and what your site needs to do. We do the research.</p>
+      <div class="process-timeline">
+        <div class="timeline-item fade-up" style="transition-delay: 0ms;">
+          <div class="timeline-num">01</div>
+          <div class="timeline-body">
+            <h3>Discovery</h3>
+            <p>We talk about your business, your customers, and what your site needs to do. We visit your space, understand the vibe, and do the research.</p>
+            <span class="timeline-detail">Usually a 30-minute call or coffee meetup</span>
+          </div>
         </div>
-        <div class="process-step fade-up">
-          <div class="step-num">2</div>
-          <h3>Design</h3>
-          <p>We create mockups based on your brand. You see the full layout before a single line of code is written.</p>
+        <div class="timeline-item fade-up" style="transition-delay: 120ms;">
+          <div class="timeline-num">02</div>
+          <div class="timeline-body">
+            <h3>Design</h3>
+            <p>We create mockups based on your brand. You see the full layout before a single line of code is written. We iterate until it feels right.</p>
+            <span class="timeline-detail">You'll see concepts within a week</span>
+          </div>
         </div>
-        <div class="process-step fade-up">
-          <div class="step-num">3</div>
-          <h3>Build</h3>
-          <p>Clean, fast code. Responsive on every device. We handle hosting setup, domain, and the technical stuff.</p>
+        <div class="timeline-item fade-up" style="transition-delay: 240ms;">
+          <div class="timeline-num">03</div>
+          <div class="timeline-body">
+            <h3>Build</h3>
+            <p>Clean, fast code. Responsive on every device. We handle hosting setup, domain, and all the technical stuff so you don't have to.</p>
+            <span class="timeline-detail">2-3 weeks typical turnaround</span>
+          </div>
         </div>
-        <div class="process-step fade-up">
-          <div class="step-num">4</div>
-          <h3>Launch</h3>
-          <p>Your site goes live. We stick around for tweaks, updates, and making sure everything runs smooth.</p>
+        <div class="timeline-item fade-up" style="transition-delay: 360ms;">
+          <div class="timeline-num">04</div>
+          <div class="timeline-body">
+            <h3>Launch & Support</h3>
+            <p>Your site goes live. We stick around for tweaks, updates, and making sure everything runs smooth. You're never left hanging.</p>
+            <span class="timeline-detail">30 days of free support included</span>
+          </div>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- Testimonial -->
+  <section class="testimonial">
+    <div class="container fade-up">
+      <div class="testimonial-quote">
+        Doorstep Digital completely transformed our online presence. Within the first month of launch, we saw a noticeable bump in online reservations and calls.
+      </div>
+      <div class="testimonial-author">Maria V.</div>
+      <div class="testimonial-role">Restaurant Owner, Miami</div>
     </div>
   </section>
 
   <!-- About -->
   <section id="about" class="about">
     <div class="container">
-      <div class="about-visual fade-up">
-        <span class="about-visual-text">BD</span>
-        <div class="about-stats">
-          <div class="stat">
-            <div class="stat-num">2+</div>
-            <div class="stat-label">Projects</div>
+      <div class="about-visual slide-left">
+        <div class="about-visual-tagline">
+          We build websites that feel like<br>
+          <strong>walking into</strong> your <em>business.</em>
+        </div>
+        <div class="about-badges">
+          <div class="about-badge">
+            <div class="badge-val">100%</div>
+            <div class="badge-label">Responsive</div>
           </div>
-          <div class="stat">
-            <div class="stat-num">100%</div>
-            <div class="stat-label">Responsive</div>
+          <div class="about-badge">
+            <div class="badge-val">Miami</div>
+            <div class="badge-label">Based</div>
           </div>
-          <div class="stat">
-            <div class="stat-num">Miami</div>
-            <div class="stat-label">Based</div>
+          <div class="about-badge">
+            <div class="badge-val">&lt;2s</div>
+            <div class="badge-label">Load Time</div>
           </div>
         </div>
       </div>
-      <div class="about-content fade-up">
+      <div class="about-content slide-right">
         <span class="section-tag">About</span>
-        <h2 class="section-title">A small studio focused on local businesses.</h2>
-        <p class="section-desc">Basecamp Digital works with restaurants, gyms, salons, and other service businesses that need a website that actually looks and works like their business feels.</p>
+        <h2 class="section-title">A small studio obsessed with local businesses.</h2>
+        <p class="section-desc">Doorstep Digital works with restaurants, gyms, salons, and service businesses that need a website that actually looks and works like their business feels.</p>
         <p class="about-detail">Too many local businesses are stuck with dated sites or generic templates that don't do them justice. We build from scratch so every site captures your specific brand, loads fast, shows up in local search, and converts visitors into customers walking through your door.</p>
         <div class="about-tools">
-          <span class="tool-tag">HTML / CSS</span>
-          <span class="tool-tag">JavaScript</span>
-          <span class="tool-tag">Responsive Design</span>
-          <span class="tool-tag">SEO</span>
-          <span class="tool-tag">Google Maps</span>
-          <span class="tool-tag">Performance</span>
+          <span class="tool-tag">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+            HTML / CSS / JS
+          </span>
+          <span class="tool-tag">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+            Responsive
+          </span>
+          <span class="tool-tag">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            SEO
+          </span>
+          <span class="tool-tag">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            Performance
+          </span>
+          <span class="tool-tag">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Google Maps
+          </span>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- CTA -->
+  <!-- CTA / Contact -->
   <section id="contact" class="cta-section">
     <div class="container">
-      <span class="section-tag fade-up">Let's Work Together</span>
-      <h2 class="section-title fade-up">Ready to upgrade your<br>online presence?</h2>
-      <p class="section-desc fade-up">Whether you're opening soon or need a fresh look, let's talk about what your business needs.</p>
-      <div class="cta-actions fade-up">
-        <a href="mailto:jakeberlin15@gmail.com?subject=Website%20Inquiry" class="btn btn-primary">Start a Conversation</a>
+      <div class="cta-text fade-up">
+        <span class="section-tag">Let's Work Together</span>
+        <h2 class="section-title">Ready to upgrade your online presence?</h2>
+        <p class="section-desc">Whether you're opening soon or need a fresh look, tell us about your business and we'll get back to you within 24 hours.</p>
+        <div class="cta-email-link">
+          <span>Or email us directly at</span>
+          <a href="mailto:jakeberlin15@gmail.com">jakeberlin15@gmail.com</a>
+        </div>
       </div>
-      <div class="cta-email fade-up">
-        <span>or email us directly at</span>
-        <a href="mailto:jakeberlin15@gmail.com">jakeberlin15@gmail.com</a>
-      </div>
+      <form class="contact-form fade-up" style="transition-delay: 150ms;" onsubmit="return handleSubmit(event)">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="name">Your Name</label>
+            <input type="text" id="name" name="name" placeholder="John Doe" required>
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="john@business.com" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="business">Business Type</label>
+          <select id="business" name="business">
+            <option value="" disabled selected>Select your industry</option>
+            <option value="restaurant">Restaurant / Bar / Café</option>
+            <option value="fitness">Gym / Fitness Studio</option>
+            <option value="salon">Salon / Spa</option>
+            <option value="real-estate">Real Estate</option>
+            <option value="retail">Boutique / Retail</option>
+            <option value="service">Service Business</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="message">Tell us about your project</label>
+          <textarea id="message" name="message" placeholder="What does your business need? A new site, a redesign, better SEO?"></textarea>
+        </div>
+        <button type="submit" class="form-submit">Send Message →</button>
+      </form>
     </div>
   </section>
 
   <!-- Footer -->
   <footer class="footer">
     <div class="container">
-      <span class="footer-left">&copy; 2026 Basecamp Digital.</span>
+      <span class="footer-left">&copy; 2026 Doorstep Digital. Miami, FL.</span>
       <ul class="footer-links">
         <li><a href="#work">Work</a></li>
         <li><a href="#about">About</a></li>
@@ -1106,7 +1621,7 @@
   </footer>
 
   <script>
-    // Mobile menu toggle
+    // Mobile menu
     const toggle = document.getElementById('menuToggle');
     const mobileMenu = document.getElementById('mobileMenu');
     toggle.addEventListener('click', () => {
@@ -1120,28 +1635,56 @@
       });
     });
 
-    // Scroll-triggered fade-ups
+    // Scroll progress bar
+    window.addEventListener('scroll', () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = (scrollTop / docHeight) * 100;
+      document.getElementById('scrollProgress').style.width = progress + '%';
+    });
+
+    // Scroll-triggered animations with stagger
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add('visible');
         }
       });
-    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
 
-    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+    document.querySelectorAll('.fade-up, .slide-left, .slide-right').forEach(el => observer.observe(el));
 
     // Nav background on scroll
     const nav = document.querySelector('.nav');
     window.addEventListener('scroll', () => {
       if (window.scrollY > 40) {
         nav.style.background = 'rgba(250,250,248,0.96)';
-        nav.style.boxShadow = '0 1px 8px rgba(0,0,0,0.04)';
+        nav.style.boxShadow = '0 1px 12px rgba(0,0,0,0.05)';
       } else {
         nav.style.background = 'rgba(250,250,248,0.88)';
         nav.style.boxShadow = 'none';
       }
     });
+
+    // Subtle parallax on hero visual
+    const heroVisual = document.getElementById('heroVisual');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY < 800) {
+        const offset = window.scrollY * 0.08;
+        heroVisual.style.transform = `translateY(${offset}px)`;
+      }
+    });
+
+    // Contact form handler (mailto fallback)
+    function handleSubmit(e) {
+      e.preventDefault();
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const biz = document.getElementById('business').value;
+      const msg = document.getElementById('message').value;
+      const body = `Name: ${name}%0AEmail: ${email}%0ABusiness: ${biz}%0A%0A${encodeURIComponent(msg)}`;
+      window.location.href = `mailto:jakeberlin15@gmail.com?subject=Website%20Inquiry%20from%20${encodeURIComponent(name)}&body=${body}`;
+    }
   </script>
 </body>
 </html>
